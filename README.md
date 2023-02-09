@@ -6,7 +6,7 @@ This is for our team python project
 print("hi")
 ```
 
-## team member
+## team members
 
 Brooke Schwartz (captain)  brookebass@cs.brandeis.edu - git user: brooked11
 
