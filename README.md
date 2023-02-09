@@ -2,10 +2,6 @@
 
 This is for our team python project
 
-```
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
+```python
+print("hi")
 ```
