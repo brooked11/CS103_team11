@@ -4,14 +4,5 @@ This is for our team python project
 
 ```python
 print("hi")
+print("will this work?? please do.")
 ```
-
-## Team "Team 11":
-
-Brooke Schwartz (captain)  brookebass@cs.brandeis.edu - git user: brooked11
-
-Simon Huynh sthuynh95@brandeis.edu - git user: sthuynh95
-
-Deborah Engelberg engelbergd@brandeis.edu - git user: DeborahEngelberg 
-
-Anna Kolb annakolb@brandeis.edu - git user: Click41
