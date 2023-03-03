@@ -1,3 +1,0 @@
-# this is our team .gitignore file
-.DS_Store
-my* # any files or folder starting with my... will be ignore
