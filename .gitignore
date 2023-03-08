@@ -2,7 +2,8 @@
 .DS_Store
 my* # any files or folder starting with my... will be ignore
 secret* # any files or folder starting with secret... will be ignore
-
+*my*
+*secret*
 # Logs
 logs
 *.log
