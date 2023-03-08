@@ -70,8 +70,9 @@ def index():
 
     <ul>
         <li><a href="{url_for('annaForm')}">Anna's GPT Method</a></li>
+        <li><a href="{url_for('simonForm')}">Simon's GPT Demo</a></li>
         <li><a href="{url_for('gptdemo')}">Ask questions to GPT</a></li>
-        <li><a href="{url_for('simondemo')}">Simon's GPT Demo</a></li>
+
     </ul>
     <br>
     <a href='/'>Home</a>
@@ -103,8 +104,8 @@ def annaForm():
         </form>
         '''
     
-@app.route('/simondemo', methods=['GET', 'POST'])
-def simondemo():
+@app.route('/simonForm', methods=['GET', 'POST'])
+def simonForm():
     ''' handle a get request by sending a form 
         and a post request by returning the GPT response
     '''
@@ -119,7 +120,11 @@ def simondemo():
         <div style="border:thin solid black">{answer}</div>
         Here is the answer in "pre" mode:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('simondemo')}> make another query</a>
+        <a href={url_for('simonForm')}> make another query</a>
+        <br>
+        <a href="{url_for('index')}">Go Back to Index</a>
+        <br>
+        <a href='/'>Home</a>
         '''
     else:
         return '''
