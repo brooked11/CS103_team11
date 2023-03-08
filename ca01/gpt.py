@@ -19,7 +19,6 @@ On Windows:
 '''
 import openai
 
-
 class GPT():
     ''' make queries to gpt from a given API '''
     def __init__(self,apikey):
@@ -32,6 +31,20 @@ class GPT():
         self.model_engine = "text-davinci-003"
 
     def getResponse(self,prompt):
+        ''' Generate a GPT response '''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt=prompt,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
+
+        response = completion.choices[0].text
+        return response
+    
+    def annaMethod(self, prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
