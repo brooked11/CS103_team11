@@ -101,6 +101,34 @@ def annaForm():
             <p><input type=submit value="get response">
         </form>
         '''
+    
+@app.route('/simondemo', methods=['GET', 'POST'])
+def simondemo():
+    ''' handle a get request by sending a form 
+        and a post request by returning the GPT response
+    '''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.getSimonResponse(prompt)
+        return f'''
+        <h1>Simon's GPT Demo</h1>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('simondemo')}> make another query</a>
+        '''
+    else:
+        return '''
+        <h1>Simon's GPT Demo App</h1>
+        Enter your code below. The app will add comments to your code.
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
 
 @app.route('/gptdemo', methods=['GET', 'POST'])
 def gptdemo():
@@ -132,6 +160,8 @@ def gptdemo():
             <p><input type=submit value="get response">
         </form>
         '''
+    
+
 
 if __name__=='__main__':
     # run the code on port 5001, MacOS uses port 5000 for its own service :(
