@@ -69,8 +69,9 @@ def index():
     <h1>Index of Team Members' pages</h1>
 
     <ul>
-        <li><a href="{url_for('annaForm')}">Anna's method</a></li>
+        <li><a href="{url_for('annaForm')}">Anna's GPT Method</a></li>
         <li><a href="{url_for('gptdemo')}">Ask questions to GPT</a></li>
+        <li><a href="{url_for('simondemo')}">Simon's GPT Demo</a></li>
     </ul>
     <br>
     <a href='/'>Home</a>
