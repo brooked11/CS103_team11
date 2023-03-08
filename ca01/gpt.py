@@ -57,6 +57,20 @@ class GPT():
 
         response = completion.choices[0].text
         return response
+    
+    def getSimonResponse(self, prompt):
+        ''' Generate a GPT response '''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt=f"Add comments to this program {prompt}",
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
+
+        response = completion.choices[0].text
+        return response
 
 if __name__=='__main__':
     '''
