@@ -89,6 +89,10 @@ def annaForm():
         <h1>Anna's method</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
+        Here is the answer:
+        <br>
+        <div style="border:thin solid black; padding: 10px">{answer}</div>
+        <br>
         <a href={url_for('annaForm')}>Type more!</a>
         <br>
         <a href="{url_for('index')}">Go Back to Index</a>
@@ -98,7 +102,7 @@ def annaForm():
     else:
         return '''
         <h1>Anna's method</h1>
-        Enter a text below
+        Enter a text below. The app will jumble it up!
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
