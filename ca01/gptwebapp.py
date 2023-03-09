@@ -146,6 +146,10 @@ def brookeForm():
         <h1>Brooke's method</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
         <a href={url_for('brookeForm')}>Type more!</a>
         <br>
         <a href="{url_for('index')}">Go Back to Index</a>
@@ -155,7 +159,7 @@ def brookeForm():
     else:
         return '''
         <h1>Brooke's method</h1>
-        Enter a text below
+        Submit a program and I'll tell you what it does.
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
