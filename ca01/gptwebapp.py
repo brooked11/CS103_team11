@@ -33,11 +33,11 @@ def home():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>Home Page</h1>
+        <h1><ins>Home Page</ins></h1>
         <nav>
-            <a href="{url_for('about')}">About Us</a>
-            <a href="{url_for('team')}">Team Members</a>
-            <a href="{url_for('index')}">Index of Team Members' pages</a>
+            <button><h3><a href="{url_for('about')}">About Us</a></h3></button>  
+            <button><h3><a href="{url_for('team')}">Team Members</a></h3></button>  
+            <button><h3><a href="{url_for('index')}">Index of Team Members' pages</a></h3></button>
         </nav>
     '''
 
@@ -49,27 +49,27 @@ def about():
         <h1>About Us</h1>
         <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Debbie.</p>
         <br>
-        <a href='/'>Home</a>
+        <button><b><a href='/'>Home</a></b></button>
         
     '''
 
 @app.route('/team')
 def team():
     return f'''
-    <h1>Team Members</h1>
-    <h2>BROOKE</h2>
-    Brooke is a computer scientist.
+    <h1><header><ins>Team Members</ins><header></h1>
+    <h2>Brooke</h2>
+    Brooke is a sophomore at Brandeis. She created a method that looks at the code the user input and responds with what it does.
     <br><br>
-    <h2>ANNA</h2>
+    <h2>Anna</h2>
     Anna is a computer scientist.
     <br><br>
-    <h2>SIMON</h2>
+    <h2>Simon</h2>
     Simon is a computer scientist.
     <br><br>
-    <h2>DEBBIE</h2>
+    <h2>Debbie</h2>
     Debbie is a computer scientist.
     <br><br><br>
-    <a href='/'>Home</a>
+    <button><b><a href='/'>Home</a></b></button>
     '''
 
 @app.route('/index')
@@ -87,7 +87,7 @@ def index():
 
     </ul>
     <br>
-    <a href='/'>Home</a>
+    <button><b><a href='/'>Home</a></b></button>
 
     '''
 
@@ -104,7 +104,7 @@ def annaForm():
         <br>
         <a href="{url_for('index')}">Go Back to Index</a>
         <br>
-        <a href='/'>Home</a>
+        <button><b><a href='/'>Home</a></b></button>
         '''
     else:
         return '''
@@ -136,7 +136,7 @@ def simonForm():
         <br>
         <a href="{url_for('index')}">Go Back to Index</a>
         <br>
-        <a href='/'>Home</a>
+        <button><b><a href='/'>Home</a></b></button>
         '''
     else:
         return '''
@@ -165,7 +165,7 @@ def brookeForm():
         <br>
         <a href="{url_for('index')}">Go Back to Index</a>
         <br>
-        <a href='/'>Home</a>
+        <button><b><a href='/'>Home</a></b></button>
         '''
     else:
         return '''
@@ -195,7 +195,7 @@ def gptdemo():
         <pre style="border:thin solid black">{answer}</pre>
         <a href={url_for('gptdemo')}> make another query</a>
         <br>
-        <a href='/'>Home</a>
+        <button><b><a href='/'>Home</a></b></button>
         '''                          
     
     else:
