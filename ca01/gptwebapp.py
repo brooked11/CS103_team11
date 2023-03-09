@@ -141,7 +141,7 @@ def simonForm():
         </form>
         '''
 
-@app.route('/annaform', methods=['GET', 'POST'])
+@app.route('/brookeForm', methods=['GET', 'POST'])
 def brookeForm():
     if request.method == 'POST':
         prompt = request.form['prompt']
