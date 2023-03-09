@@ -58,13 +58,13 @@ def team():
     return f'''
     <h1>Team Members</h1>
     BROOKE - Brooke is a computer scientist.
-    <br>
+    <br><br>
     ANNA - Anna is a computer scientist.
-    <br>
+    <br><br>
     SIMON - Simon is a computer scientist.
-    <br>
+    <br><br>
     DEBBIE - Debbie is a computer scientist.
-    <br>
+    <br><br>
     <a href='/'>Home</a>
     '''
 
