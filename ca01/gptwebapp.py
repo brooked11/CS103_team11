@@ -57,14 +57,18 @@ def about():
 def team():
     return f'''
     <h1>Team Members</h1>
-    BROOKE - Brooke is a computer scientist.
+    <h2>BROOKE</h2>
+    Brooke is a computer scientist.
     <br><br>
-    ANNA - Anna is a computer scientist.
+    <h2>ANNA</h2>
+    Anna is a computer scientist.
     <br><br>
-    SIMON - Simon is a computer scientist.
+    <h2>SIMON</h2>
+    Simon is a computer scientist.
     <br><br>
-    DEBBIE - Debbie is a computer scientist.
-    <br><br>
+    <h2>DEBBIE</h2>
+    Debbie is a computer scientist.
+    <br><br><br>
     <a href='/'>Home</a>
     '''
 
