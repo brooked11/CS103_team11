@@ -88,6 +88,10 @@ def annaForm():
         <h1>Anna's method</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
         <a href={url_for('annaForm')}>Type more!</a>
         <br>
         <a href="{url_for('index')}">Go Back to Index</a>

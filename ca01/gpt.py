@@ -48,7 +48,7 @@ class GPT():
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
-            prompt=prompt,
+            prompt=f"You will see your sentence jumbled up {prompt}",
             max_tokens=1024,
             n=1,
             stop=None,
