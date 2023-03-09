@@ -89,10 +89,6 @@ def annaForm():
         <h1>Anna's method</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
-        Here is the answer in text mode:
-        <div style="border:thin solid black">{answer}</div>
-        Here is the answer in "pre" mode:
-        <pre style="border:thin solid black">{answer}</pre>
         <a href={url_for('annaForm')}>Type more!</a>
         <br>
         <a href="{url_for('index')}">Go Back to Index</a>
@@ -141,7 +137,7 @@ def simonForm():
         </form>
         '''
 
-@app.route('/annaform', methods=['GET', 'POST'])
+@app.route('/brookeform', methods=['GET', 'POST'])
 def brookeForm():
     if request.method == 'POST':
         prompt = request.form['prompt']
@@ -161,7 +157,7 @@ def brookeForm():
         <h1>Brooke's method</h1>
         Enter a text below
         <form method="post">
-            <textarea name="prompt"></textarea>
+            <textarea name="prompt"></textar/ea>
             <p><input type=submit value="get response">
         </form>
         '''
