@@ -157,7 +157,7 @@ def brookeForm():
         <h1>Brooke's method</h1>
         Enter a text below
         <form method="post">
-            <textarea name="prompt"></textar/ea>
+            <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
         </form>
         '''

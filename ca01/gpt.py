@@ -76,7 +76,7 @@ class GPT():
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
-            prompt=f"Say what this program does: {prompt}",
+            prompt=f"Submit a program and I'll tell you what it does: {prompt}",
             max_tokens=1024,
             n=1,
             stop=None,
