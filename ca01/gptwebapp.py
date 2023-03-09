@@ -71,6 +71,7 @@ def index():
     <ul>
         <li><a href="{url_for('annaForm')}">Anna's GPT Method</a></li>
         <li><a href="{url_for('simonForm')}">Simon's GPT Demo</a></li>
+        <li><a href="{url_for('brookeForm')}">Brooke's GPT Demo</a></li>
         <li><a href="{url_for('gptdemo')}">Ask questions to GPT</a></li>
 
     </ul>
@@ -130,6 +131,31 @@ def simonForm():
         return '''
         <h1>Simon's GPT Demo App</h1>
         Enter your code below. The app will add comments to your code.
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
+
+@app.route('/annaform', methods=['GET', 'POST'])
+def brookeForm():
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.brookeMethod(prompt)
+        return f'''
+        <h1>Brooke's method</h1>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        <a href={url_for('brookeForm')}>Type more!</a>
+        <br>
+        <a href="{url_for('index')}">Go Back to Index</a>
+        <br>
+        <a href='/'>Home</a>
+        '''
+    else:
+        return '''
+        <h1>Brooke's method</h1>
+        Enter a text below
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
