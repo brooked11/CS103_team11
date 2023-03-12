@@ -38,9 +38,15 @@ def home():
             <button><h3><a href="{url_for('about')}">About Us</a></h3></button>  
             <button><h3><a href="{url_for('team')}">Team Members</a></h3></button>  
             <button><h3><a href="{url_for('index')}">Index of Team Members' pages</a></h3></button>
-            <h4>Find Debbie on LinkedIn!</h4>
+            <h4>Find Debbie on LinkedIn below!</h4>
             <a href="https://www.linkedin.com/in/deborahengelberg/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
-        </nav>
+            <h4>Find Anna on LinkedIn below!</h4>
+            <a href="https://www.linkedin.com/in/anna-kolb-745a38233/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
+            <h4>Find Simon on LinkedIn below!</h4>
+            <a href="https://www.linkedin.com/in/sthuynh11/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
+            <h4>Find Brooke on LinkedIn below!</h4>
+            <a href="https://www.linkedin.com/in/brooke-schwartz-456680135/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
+             </nav>
     '''
 
 @app.route('/about')
