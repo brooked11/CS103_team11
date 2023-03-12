@@ -139,7 +139,7 @@ def annaForm():
         <h1>Anna's method</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
-        Here is the mix up!:
+        Here is the translation!:
         <br>
         <div style="border:thin solid black; padding: 10px">{answer}</div>
         <br>
