@@ -33,7 +33,7 @@ def home():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1><ins>Home Page</ins></h1>
+        <h1><ins>Team 11's Home Page</ins></h1>
         <nav>
             <button><h3><a href="{url_for('about')}">About Us</a></h3></button>  
             <button><h3><a href="{url_for('team')}">Team Members</a></h3></button>  
@@ -47,6 +47,7 @@ def about():
     print('processing / route')
     return f'''
         <h1>About Us</h1>
+        <p>Hello, this is Team 11.</p>
         <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Debbie.</p>
         <br>
         <button><b><a href='/'>Home</a></b></button>
@@ -64,7 +65,7 @@ def team():
     Anna is a computer scientist.
     <br><br>
     <h2>Simon</h2>
-    Simon is a computer scientist.
+    Simon has been studied math for a while now and wanted to learn a bit more coding. The form he created will add comments to the code the user inputs and make it more human-readble. 
     <br><br>
     <h2>Debbie</h2>
     Debbie is a computer scientist.
@@ -83,7 +84,6 @@ def index():
         <li><a href="{url_for('annaForm')}">Anna's GPT Method</a></li>
         <li><a href="{url_for('simonForm')}">Simon's GPT Demo</a></li>
         <li><a href="{url_for('brookeForm')}">Brooke's GPT Demo</a></li>
-        <li><a href="{url_for('gptdemo')}">Ask questions to GPT</a></li>
 
     </ul>
     <br>
@@ -145,8 +145,8 @@ def simonForm():
     else:
         return '''
         <h1>Simon's GPT Demo App</h1>
-        Enter your code below. The app will add comments to your code.
-        <form method="post">
+        Enter your your program below. This app will add comments to your code and make it more human-readable.
+        <form method="post" style="height:200px;">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
         </form>
