@@ -33,7 +33,7 @@ def home():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <header><h1 style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 17px"><ins>Team 11's Home Page</ins></h1></header>
+        <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>Team 11's Home Page</ins></h1></header>
         <nav>
             <button><h3><a href="{url_for('about')}">About Us</a></h3></button>  
             <button><h3><a href="{url_for('team')}">Team Members</a></h3></button>  
