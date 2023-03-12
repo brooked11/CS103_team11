@@ -48,7 +48,7 @@ def about():
     return f'''
         <h1>About Us</h1>
         <p>Hello, this is Team 11.</p>
-        <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Debbie.</p>
+        <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Deborah.</p>
         <br>
         <button><b><a href='/'>Home</a></b></button>
         
@@ -84,6 +84,7 @@ def index():
         <li><a href="{url_for('annaForm')}">Anna's GPT Method</a></li>
         <li><a href="{url_for('simonForm')}">Simon's GPT Demo</a></li>
         <li><a href="{url_for('brookeForm')}">Brooke's GPT Demo</a></li>
+        <li><a href="{url_for('deborahForm')}">Deborah's GPT Demo</a></li>
 
     </ul>
     <br>
@@ -175,6 +176,35 @@ def brookeForm():
         return '''
         <h1>Brooke's method</h1>
         Submit a program and I'll tell you what it does.
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
+    
+@app.route('/deborahform', methods=['GET', 'POST'])
+def deborahForm():
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.deborahMethod(prompt)
+        return f'''
+        <h1>Deborah's method</h1>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer:
+        <br>
+         <pre style="border:thin solid black">{answer}</pre>
+        <br>
+        <a href={url_for('deborahForm')}>Type more!</a>
+        <br>
+        <a href="{url_for('index')}">Go Back to Index</a>
+        <br>
+        <button><b><a href='/'>Home</a></b></button>
+        '''
+    else:
+        return '''
+        <h1>Deborah's method</h1>
+         Enter your your program below. This app will rewrite it in Java!! Enjoy :)
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">

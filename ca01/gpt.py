@@ -85,6 +85,19 @@ class GPT():
 
         response = completion.choices[0].text
         return response
+    
+    def deborahMethod(self, prompt):
+            ''' Generate a GPT response '''
+            completion = openai.Completion.create(
+                engine=self.model_engine,
+                prompt=f"rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing {prompt}",
+                max_tokens=1024,
+                n=1,
+                stop=None,
+                temperature=0.8,
+            )
+            response = completion.choices[0].text
+            return response
 
 if __name__=='__main__':
     '''
