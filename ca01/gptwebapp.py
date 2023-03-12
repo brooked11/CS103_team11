@@ -146,7 +146,7 @@ def simonForm():
         return '''
         <h1>Simon's GPT Demo App</h1>
         Enter your your program below. This app will add comments to your code and make it more human-readable.
-        <form method="post" style="height:200px;">
+        <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
         </form>
