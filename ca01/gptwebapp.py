@@ -33,7 +33,7 @@ def home():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1><ins>Team 11's Home Page</ins></h1>
+        <header><h1 style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 17px"><ins>Team 11's Home Page</ins></h1></header>
         <nav>
             <button><h3><a href="{url_for('about')}">About Us</a></h3></button>  
             <button><h3><a href="{url_for('team')}">Team Members</a></h3></button>  
@@ -54,35 +54,37 @@ def about():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>About Us</h1>
+        <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>About Us</ins></h1></header>
         <p>Hello, this is Team 11.</p>
         <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Debbie.</p>
-        <section>
-            <h4><u>Anna's Program</u></h4>
-            <p>
-                Anna's program is a method that takes in a random prompt (a sentence or single word)
-                and returns a jumbled up response. Jumbled up/mixed up means either adding or removing letters/words
-                to the original prompt.
-            </p>
-        </section>
-        <section>
-            <h4><u>Brooke's Program</u></h4>
-            <p>
-                Type program info here
-            </p>
-        </section>
-        <section>
-            <h4><u>Simon's Program</u></h4>
-            <p>
-                Type program info here
-            </p>
-        </section>
-        <section>
-            <h4><u>Debbie's Program</u></h4>
-            <p>
-                Type program info here
-            </p>
-        </section>       
+        <section style="display: flex; flex-wrap: wrap">
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Anna's Program</u></h4>
+                <p>
+                    Anna's program is a method that takes in a random prompt (a sentence or single word)
+                    and returns a jumbled up response. Jumbled up/mixed up means either adding or removing letters/words
+                    to the original prompt.
+                </p>
+            </article>
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Brooke's Program</u></h4>
+                <p>
+                    Type program info here
+                </p>
+            </article>
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Simon's Program</u></h4>
+                <p>
+                    Type program info here
+                </p>
+            </article>
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Debbie's Program</u></h4>
+                <p>
+                    Type program info here
+                </p>
+            </article> 
+        </section>        
         <br>
         <button><b><a href='/'>Home</a></b></button>
         
@@ -91,7 +93,7 @@ def about():
 @app.route('/team')
 def team():
     return f'''
-    <h1><header><ins>Team Members</ins><header></h1>
+    <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>Team Members</ins></h1></header>
     <h2>Brooke</h2>
     Brooke is a sophomore at Brandeis. She created a method that looks at the code the user input and responds with what it does.
     <br><br>
@@ -114,7 +116,7 @@ def index():
 
     ''' displays link to the team members' pages '''
     return f'''
-    <h1>Index of Team Members' pages</h1>
+    <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>Index of Team Members' pages</ins></h1></header>
 
     <ul>
         <li><a href="{url_for('annaForm')}">Anna's GPT Method</a></li>
@@ -153,7 +155,7 @@ def annaForm():
         Enter your preferred language before the comma, then any word/sentence you wish to translate into that
         language!
         <form method="post">
-            <textarea name="prompt"></textarea>
+            <textarea name="prompt" style="height: 200px; width: 400px"></textarea>
             <p><input type=submit value="get response">
         </form>
         '''
