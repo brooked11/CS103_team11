@@ -167,7 +167,7 @@ def simonForm():
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
-        answer = gptAPI.getSimonResponse(prompt)
+        answer = gptAPI.simonMethod(prompt)
         return f'''
         <h1>Simon's GPT Demo</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>

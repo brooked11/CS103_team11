@@ -58,7 +58,7 @@ class GPT():
         response = completion.choices[0].text
         return response
     
-    def getSimonResponse(self, prompt):
+    def simonMethod(self, prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
