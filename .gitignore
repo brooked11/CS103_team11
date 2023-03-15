@@ -4,6 +4,7 @@ my* # any files or folder starting with my... will be ignore
 secret* # any files or folder starting with secret... will be ignore
 *my*
 *secret*
+*__pycache__* # any files or folder starting with __pycache__ will be ignore
 # Logs
 logs
 *.log

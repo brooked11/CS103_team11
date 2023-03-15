@@ -33,12 +33,20 @@ def home():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1><ins>Home Page</ins></h1>
+        <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>Team 11's Home Page</ins></h1></header>
         <nav>
             <button><h3><a href="{url_for('about')}">About Us</a></h3></button>  
             <button><h3><a href="{url_for('team')}">Team Members</a></h3></button>  
             <button><h3><a href="{url_for('index')}">Index of Team Members' pages</a></h3></button>
-        </nav>
+            <h4>Find Debbie on LinkedIn below!</h4>
+            <a href="https://www.linkedin.com/in/deborahengelberg/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
+            <h4>Find Anna on LinkedIn below!</h4>
+            <a href="https://www.linkedin.com/in/anna-kolb-745a38233/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
+            <h4>Find Simon on LinkedIn below!</h4>
+            <a href="https://www.linkedin.com/in/sthuynh11/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
+            <h4>Find Brooke on LinkedIn below!</h4>
+            <a href="https://www.linkedin.com/in/brooke-schwartz-456680135/" target="_blank"><img src="https://raw.githubusercontent.com/nakulbhati/nakulbhati/master/contain/in.png" alt="LinkedIn" width="30"></a>
+             </nav>
     '''
 
 @app.route('/about')
@@ -46,8 +54,37 @@ def about():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>About Us</h1>
+        <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>About Us</ins></h1></header>
+        <p>Hello, this is Team 11.</p>
         <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Debbie.</p>
+        <section style="display: flex; flex-wrap: wrap">
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Anna's Program</u></h4>
+                <p>
+                    Anna's program is a method that takes in a random prompt (a sentence or single word)
+                    and returns a jumbled up response. Jumbled up/mixed up means either adding or removing letters/words
+                    to the original prompt.
+                </p>
+            </article>
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Brooke's Program</u></h4>
+                <p>
+                    Type program info here
+                </p>
+            </article>
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Simon's Program</u></h4>
+                <p>
+                    Type program info here
+                </p>
+            </article>
+            <article style="flex: 1; border: 4px solid black; padding: 10px">
+                <h4><u>Debbie's Program</u></h4>
+                <p>
+                    Type program info here
+                </p>
+            </article> 
+        </section>        
         <br>
         <button><b><a href='/'>Home</a></b></button>
         
@@ -56,16 +93,18 @@ def about():
 @app.route('/team')
 def team():
     return f'''
-    <h1><header><ins>Team Members</ins><header></h1>
+    <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>Team Members</ins></h1></header>
     <h2>Brooke</h2>
     Brooke is a sophomore at Brandeis. She created a method that looks at the code the user input and responds with what it does.
     <select><option>Brooke is cool.</option><option>Brooke is VERY cool.</option></select>
     <br><br>
     <h2>Anna</h2>
-    Anna is a computer scientist.
+    Anna is a sophomore at Brandeis majoring in computer scientist and minoring in architecture. Her job on the team
+    was to create her own method for the project, as well as start the layouts of all preceedings. She copied and
+    uploaded the gpt.app and gptwebapp.py files to our repository as well as the project instructions/directions. 
     <br><br>
     <h2>Simon</h2>
-    Simon is a computer scientist.
+    Simon has been studied math for a while now and wanted to learn a bit more coding. The form he created will add comments to the code the user inputs and make it more human-readble. 
     <br><br>
     <h2>Debbie</h2>
     Debbie is a computer scientist.
@@ -78,13 +117,13 @@ def index():
 
     ''' displays link to the team members' pages '''
     return f'''
-    <h1>Index of Team Members' pages</h1>
+    <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>Index of Team Members' pages</ins></h1></header>
 
     <ul>
         <li><a href="{url_for('annaForm')}">Anna's GPT Method</a></li>
         <li><a href="{url_for('simonForm')}">Simon's GPT Demo</a></li>
         <li><a href="{url_for('brookeForm')}">Brooke's GPT Demo</a></li>
-        <li><a href="{url_for('gptdemo')}">Ask questions to GPT</a></li>
+        <li><a href="{url_for('deborahForm')}">Deborah's GPT Demo</a></li>
 
     </ul>
     <br>
@@ -101,18 +140,23 @@ def annaForm():
         <h1>Anna's method</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
         <hr>
-        <a href={url_for('annaForm')}>Type more!</a>
+        Here is the translation!:
         <br>
-        <a href="{url_for('index')}">Go Back to Index</a>
+        <div style="border:thin solid black; padding: 10px">{answer}</div>
+        <br>
+        <button><a href={url_for('annaForm')}>Type more!</a></button>
+        <br>
+        <button><a href="{url_for('index')}">Go Back to Index</a></button>
         <br>
         <button><b><a href='/'>Home</a></b></button>
         '''
     else:
         return '''
         <h1>Anna's method</h1>
-        Enter a text below
+        Enter your preferred language before the comma, then any word/sentence you wish to translate into that
+        language!
         <form method="post">
-            <textarea name="prompt"></textarea>
+            <textarea name="prompt" style="height: 200px; width: 400px"></textarea>
             <p><input type=submit value="get response">
         </form>
         '''
@@ -124,7 +168,7 @@ def simonForm():
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
-        answer = gptAPI.getSimonResponse(prompt)
+        answer = gptAPI.simonMethod(prompt)
         return f'''
         <h1>Simon's GPT Demo</h1>
         <pre style="bgcolor:yellow">{prompt}</pre>
@@ -133,18 +177,18 @@ def simonForm():
         <div style="border:thin solid black">{answer}</div>
         Here is the answer in "pre" mode:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('simonForm')}> make another query</a>
+        <button><a href={url_for('simonForm')}> make another query</a></button>
         <br>
-        <a href="{url_for('index')}">Go Back to Index</a>
+        <button><a href="{url_for('index')}">Go Back to Index</a></button>
         <br>
         <button><b><a href='/'>Home</a></b></button>
         '''
     else:
         return '''
         <h1>Simon's GPT Demo App</h1>
-        Enter your code below. The app will add comments to your code.
+        Enter your your program below. This app will add comments to your code and make it more human-readable.
         <form method="post">
-            <textarea name="prompt"></textarea>
+            <textarea name="prompt" style="height:200px;width=500px;"></textarea>
             <p><input type=submit value="get response">
         </form>
         '''
@@ -162,9 +206,9 @@ def brookeForm():
         <div style="border:thin solid black">{answer}</div>
         Here is the answer in "pre" mode:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('brookeForm')}>Type more!</a>
+        <button><a href={url_for('brookeForm')}>Type more!</a></button>
         <br>
-        <a href="{url_for('index')}">Go Back to Index</a>
+        <button><a href="{url_for('index')}">Go Back to Index</a></button>
         <br>
         <button><b><a href='/'>Home</a></b></button>
         '''
@@ -172,6 +216,35 @@ def brookeForm():
         return '''
         <h1>Brooke's method</h1>
         Submit a program and I'll tell you what it does.
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
+    
+@app.route('/deborahform', methods=['GET', 'POST'])
+def deborahForm():
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.deborahMethod(prompt)
+        return f'''
+        <h1>Deborah's method</h1>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer:
+        <br>
+         <pre style="border:thin solid black">{answer}</pre>
+        <br>
+        <a href={url_for('deborahForm')}>Type more!</a>
+        <br>
+        <a href="{url_for('index')}">Go Back to Index</a>
+        <br>
+        <button><b><a href='/'>Home</a></b></button>
+        '''
+    else:
+        return '''
+        <h1>Deborah's method</h1>
+         Enter your your program below. This app will rewrite it in Java!! Enjoy :)
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
