@@ -59,6 +59,7 @@ def team():
     <h1><header><ins>Team Members</ins><header></h1>
     <h2>Brooke</h2>
     Brooke is a sophomore at Brandeis. She created a method that looks at the code the user input and responds with what it does.
+    <select><option>Brooke is cool.</option><option>Brooke is VERY cool.</option></select>
     <br><br>
     <h2>Anna</h2>
     Anna is a computer scientist.
