@@ -56,7 +56,10 @@ def about():
     return f'''
         <header style="text-align: center; color: silver; background-color: #02437B; border: 4px solid silver; padding: 13px"><h1><ins>About Us</ins></h1></header>
         <p>Hello, this is Team 11.</p>
-        <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Debbie.</p>
+        <p>Our team is made up of 4 members: Anna, Brooke, Simon, and Deborah (Debbie).<br><br>
+        We have created a webapp that helps a user code more efficiently by allowing them to understand another person's code without having to decode (literally) it themselves; by
+        being able to easily put comments into their code; translating other coding languages into Java; and translating user input into different languages.
+        </p>
         <section style="display: flex; flex-wrap: wrap">
             <article style="flex: 1; border: 4px solid black; padding: 10px">
                 <h4><u>Anna's Program</u></h4>
@@ -69,19 +72,19 @@ def about():
             <article style="flex: 1; border: 4px solid black; padding: 10px">
                 <h4><u>Brooke's Program</u></h4>
                 <p>
-                    Type program info here
+                    Brooke's program takes a piece of code and explains to the user what it does.
                 </p>
             </article>
             <article style="flex: 1; border: 4px solid black; padding: 10px">
                 <h4><u>Simon's Program</u></h4>
                 <p>
-                    Type program info here
+                    Simon's program adds comments to the input code, making it more readable.
                 </p>
             </article>
             <article style="flex: 1; border: 4px solid black; padding: 10px">
                 <h4><u>Debbie's Program</u></h4>
                 <p>
-                    Type program info here
+                    Debbie’s program will take in a user's code, and will translate it into Java code.
                 </p>
             </article> 
         </section>        
@@ -107,7 +110,7 @@ def team():
     Simon has been studied math for a while now and wanted to learn a bit more coding. The form he created will add comments to the code the user inputs and make it more human-readble. 
     <br><br>
     <h2>Debbie</h2>
-    Debbie is a computer scientist.
+    Debbie is a junior from Austria studying computer science and economics. She loves to play tennis and sing :)
     <br><br><br>
     <button><b><a href='/'>Home</a></b></button>
     '''
