@@ -38,9 +38,9 @@ import sys
 
 # here are some helper functions ...
 
-def print_usage():
+def print_menu():
     ''' print an explanation of how to use this command '''
-    print('''usage:
+    print('''menu:
             0. quit
             1. show transactions
             2. add transaction
@@ -49,7 +49,7 @@ def print_usage():
             5. summarize transactions by month
             6. summarize transactions by year
             7. summarize transactions by category
-            8. print this menu
+            8. type 'menu' : print this menu
             '''
             )
 
@@ -69,35 +69,30 @@ def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction'''
     todolist = Transaction()
     if arglist==[]:
-        print_usage()
+        print_menu()
     elif arglist[0]=="quit":
         print("bye")
         sys.exit(0)
     elif arglist[0]=="show":
-        print_todos(todolist.selectActive())
+        print_todos(todolist.select_active())
     elif arglist[0]=="showall":
-        print_todos(todos = todolist.selectAll())
-    elif arglist[0]=="showcomplete":
-        print_todos(todolist.selectCompleted())
+        print_todos(todos = todolist.select_all())
     elif arglist[0]=='add':
         if len(arglist)!=5: #doesn't work if add is by itself
-            print_usage()
+            print_menu()
         else:
             todo = {'amount':arglist[1],'category':arglist[2],'date':arglist[3], 'description': arglist[4]}
             todolist.add(todo)
-    elif arglist[0]=='complete':
-        if len(arglist)!= 2:
-            print_usage()
-        else:
-            todolist.setComplete(arglist[1])
     elif arglist[0]=='delete':
-        if len(arglist)!= 5:
-            print_usage()
+        if len(arglist)!= 2:
+            print_menu()
         else:
             todolist.delete(arglist[1])
+    elif arglist[0]=='menu':
+        print_menu()
     else:
         print(arglist,"is not implemented")
-        print_usage()
+        print_menu()
 
 
 def toplevel():
@@ -105,7 +100,7 @@ def toplevel():
     if len(sys.argv)==1:
         # they didn't pass any arguments, 
         # so prompt for them in a loop
-        print_usage()
+        print_menu()
         args = []
         while args!=['']:
             args = input("command> ").split(' ')
@@ -120,7 +115,6 @@ def toplevel():
         process_args(args)
         print('-'*40+'\n'*3)
 
-    
 
 toplevel()
 
