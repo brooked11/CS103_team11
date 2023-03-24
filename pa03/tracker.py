@@ -1,27 +1,16 @@
-#! /opt/miniconda3/bin/python3
 '''
-todo2 is an app that maintains a todo list
-just as with the todo code in this folder.
+tracker.py is an app that maintains a transaction list.
 
 but it also uses an Object Relational Mapping (ORM)
 to abstract out the database operations from the
 UI/UX code.
 
-The ORM, TodoList, will map SQL rows with the schema
-    (rowid,title,desc,completed)
-to Python Dictionaries as follows:
-
-(5,'commute','drive to work',false) <-->
-
-{rowid:5,
- title:'commute',
- desc:'drive to work',
- completed:false)
- }
+The ORM, Transaction, will map SQL rows with the schema
+    (rowid,amount,category,date,description)
 
 In place of SQL queries, we will have method calls.
 
-This app will store the data in a SQLite database ~/todo.db
+This app will store the data in a SQLite database tracker.db
 
 Recall that sys.argv is a list of strings capturing the
 command line invocation of this program
