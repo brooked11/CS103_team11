@@ -16,3 +16,10 @@ def test_add():
     assert transaction_list.select_active()[-1]['description'] == 'test'
     transaction_list.delete(transaction_list.select_active()[-1]['item #'])
     
+def test_sum_by_year():
+    '''test the sum_by_year method'''
+    transaction_list = Transaction()
+    transaction = {'amount':1,'category':'food','date':'2019-01-01',
+                        'description': 'test'}
+    transaction_list.add(transaction)
+    

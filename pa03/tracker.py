@@ -30,14 +30,14 @@ from transaction import Transaction
 def print_menu():
     ''' print an explanation of how to use this command '''
     print('''commands: usage
-            0. quit : exit the program
-            1. show : show all transactions
-            2. add amount category date description : add transaction
-            3. delete transaction_id : delete transaction
-            4. summarize date : summarize transactions by date
-            5. summarize month : summarize transactions by month
-            6. summarize year : summarize transactions by year
-            7. summarize cat : summarize transactions by category
+            0. quit : exits the program
+            1. show : shows all transactions
+            2. add amount category date description : adds a transaction
+            3. delete transaction_id : deletes a transaction
+            4. summarize date : summarizes transactions by their date
+            5. summarize month MM : summarize transactions by their month
+            6. summarize year YYYY: summarize transactions by their year
+            7. summarize cat : summarize transactions by their category
             8. menu : print this menu
             '''
             )
@@ -70,14 +70,16 @@ def process_args(arglist):
     elif arglist[0]=="showall":
         print_transactions(transaction_list.select_all())
     elif arglist[0]=="summarize":
-        if len(arglist)!=2:
+        if len(arglist)<2: # not = because will mess up sum cat
             print_menu()
         elif arglist[1]=="month":
-            print_transactions(transaction_list.sum_by_date()) #need to change
+            print_transactions(transaction_list.sum_by_month(arglist[2])) #need to change
         elif arglist[1] == "date":
             print_transactions(transaction_list.sum_by_date())
         elif arglist[1]=="cat":
             print_transactions(transaction_list.sum_by_category())
+        elif arglist[1]=="year":
+            print_transactions(transaction_list.sum_by_year(arglist[2]))
     elif arglist[0]=='add':
         if len(arglist)!=5: #doesn't work if add is by itself
             print_menu()
