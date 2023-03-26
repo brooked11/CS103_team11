@@ -73,7 +73,7 @@ class Transaction():
         con.commit()
         con.close()
         return [to_dict(t) for t in tuples]
-    
-    def delete_transaction(self,item_id):
-        self.cursor.execute("DELETE FROM transactions WHERE rowid=?",(item_id,))
-        self.conn.commit()
+
+    ### for testing purposes only ###
+    def delete_all(self):
+        return self.run_query("DELETE FROM 'transaction'",())
