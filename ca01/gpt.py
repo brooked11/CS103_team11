@@ -48,7 +48,7 @@ class GPT():
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
-            prompt=f"Jumble up the words: {prompt}",
+            prompt=f"translate statement after comma into language inputted before comma {prompt}",
             max_tokens=1024,
             n=1,
             stop=None,
@@ -58,7 +58,7 @@ class GPT():
         response = completion.choices[0].text
         return response
     
-    def getSimonResponse(self, prompt):
+    def simonMethod(self, prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
