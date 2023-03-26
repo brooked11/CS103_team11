@@ -66,6 +66,10 @@ def process_args(arglist):
         print_transactions(transaction_list.select_active())
     elif arglist[0]=="showall":
         print_transactions(transactions = transaction_list.select_all())
+    elif arglist[0]=="sumbymonth":
+        print_transactions(transaction_list.sum_by_month())
+    elif arglist[0]=="sumbycategory":
+        print_transactions(transaction_list.sum_by_category())
     elif arglist[0]=='add':
         if len(arglist)!=5: #doesn't work if add is by itself
             print_menu()

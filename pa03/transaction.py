@@ -45,6 +45,14 @@ class Transaction():
         ''' delete a 'transaction' item '''
         return self.run_query("DELETE FROM 'transaction' WHERE rowid=(?)",(item_id,))
     
+    def sum_by_month(self):
+        ''' summarize transactions by month '''
+        return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY date",())
+    
+    def sum_by_category(self):
+        ''' summarize transactions by category '''
+        return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY category",())
+    
     def run_query(self,query,tuple):
         ''' return all of the uncompleted tasks as a list of dicts.'''
         #con= sqlite3.connect(os.getenv('HOME')+'/transaction.db')
