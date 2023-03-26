@@ -64,8 +64,16 @@ def test_delete():
                                                 {'item #': 6, 'amount': 6.74, 'category': 'food', 'date': '2010-05-27', 'description': 'Pens'},
                                                 {'item #': 7, 'amount': 7.0, 'category': 'supply', 'date': '2019-05-19', 'description': 'Bread'}]
 
+def test_sum_by_date():
+    '''test the sum_by_date method'''
+    transaction_list = Transaction()
 
-#def test_sum_by_category():
+    assert transaction_list.sum_by_date() == [{'item #': 4, 'amount': 4.74, 'category': 'supply', 'date': '2010-02-27', 'description': 'Pens'}, 
+                                                          {'item #': 6, 'amount': 6.74, 'category': 'food', 'date': '2010-05-27', 'description': 'Pens'},
+                                                          {'item #': 1, 'amount': 11.0, 'category': 'food', 'date': '2019-01-01', 'description': 'test'},
+                                                          {'item #': 7, 'amount': 7.0, 'category': 'supply', 'date': '2019-05-19', 'description': 'Bread'}]
+
+# def test_sum_by_category():
 #    '''test the sum_by_category method'''
 #    transaction_list = Transaction()
 
