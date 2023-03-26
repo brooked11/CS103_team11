@@ -22,22 +22,22 @@ could be replaced with PostgreSQL or Pandas or straight python lists
 
 '''
 
-from transaction import Transaction
 import sys
+from transaction import Transaction
 
 # here are some helper functions ...
 
 def print_menu():
     ''' print an explanation of how to use this command '''
-    print('''menu of available commands:
+    print('''commands: usage
             0. quit : exit the program
-            1. show transactions
-            2. add transaction
-            3. delete transaction
-            4. summarize transactions by date
-            5. summarize transactions by month
-            6. summarize transactions by year
-            7. summarize transactions by category
+            1. show : show all transactions
+            2. add amount category date description : add transaction
+            3. delete transaction_id : delete transaction
+            4. summarize date : summarize transactions by date
+            5. summarize month : summarize transactions by month
+            6. summarize year : summarize transactions by year
+            7. summarize cat : summarize transactions by category
             8. menu : print this menu
             '''
             )
@@ -45,16 +45,16 @@ def print_menu():
 def print_transactions(transactions):
     ''' print the transaction items '''
     if len(transactions)==0:
-        print('no tasks to print')
+        print('no transactions to print')
         return
     print('\n')
     #print("%-10s %-10s %-10s %-10s %-10s"%('item #','amount','category','date','description'))
-    print(f"{'item #':<10s} {'amount':<10s} {'caterogy':<10s} {'date':<10s} {'description':<10s}")
-    print('-'*60)
+    print(f"{'item #':<10s}{'amount':<15s}{'category':<15s}{'date':<15s}{'description':<15s}")
+    print('-'*50)
     for item in transactions:
-        values = tuple(item.values()) #('item #','amount','category','date','description')
+        vals = tuple(item.values()) #('item #','amount','category','date','description')
         #print(f"%-10s %-10s %-10s %-10s %-10s"%values)
-        print(f"{values[0]:<10d} {values[1]:<10.2f} {values[2]:<10s} {values[3]:<10s} {values[4]:<10s}")
+        print(f"{vals[0]:<10d}{vals[1]:<15.2f}{vals[2]:<15s}{vals[3]:<15s}{vals[4]:<15s}")
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction'''
@@ -65,13 +65,17 @@ def process_args(arglist):
         print("bye")
         sys.exit(0)
     elif arglist[0]=="show":
+        print(transaction_list.select_active()[0])
         print_transactions(transaction_list.select_active())
     elif arglist[0]=="showall":
-        print_transactions(transactions = transaction_list.select_all())
-    elif arglist[0]=="sumbymonth":
-        print_transactions(transaction_list.sum_by_month())
-    elif arglist[0]=="sumbycategory":
-        print_transactions(transaction_list.sum_by_category())
+        print_transactions(transaction_list.select_all())
+    elif arglist[0]=="summarize":
+        if len(arglist)!=2:
+            print_menu()
+        elif arglist[1]=="month":
+            print_transactions(transaction_list.sum_by_month())
+        elif arglist[1]=="cat":
+            print_transactions(transaction_list.sum_by_category())
     elif arglist[0]=='add':
         if len(arglist)!=5: #doesn't work if add is by itself
             print_menu()
@@ -104,12 +108,12 @@ def toplevel():
                 # join everything after the name as a string
                 args = ['add',args[1],args[2],args[3]," ".join(args[4:])]
             process_args(args)
-            print('-'*60+'\n'*3)
+            print('-'*50+'\n'*3)
     else:
         # read the args and process them
         args = sys.argv[1:]
         process_args(args)
-        print('-'*60+'\n'*3)
+        print('-'*50+'\n'*3)
 
 # this is the main function of the program
 toplevel()
