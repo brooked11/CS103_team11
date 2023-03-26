@@ -48,7 +48,7 @@ class Transaction():
         return self.run_query("DELETE FROM 'transaction' WHERE rowid=(?)",(item_id,))
     
     def sum_by_date(self):
-        ''' summarize transactions by month '''
+        ''' summarize transactions by date '''
         return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY date",())
     
     def sum_by_category(self):
@@ -58,6 +58,10 @@ class Transaction():
     def sum_by_year(self, year):
         ''' summarize transactions by year '''
         return self.run_query("SELECT rowid,* FROM 'transaction' WHERE strftime('%Y', date)=(?) ORDER BY date ", (year,))
+    
+    def sum_by_month(self, month):
+        ''' summarize transactions by year '''
+        return self.run_query("SELECT rowid,* FROM 'transaction' WHERE strftime('%m', date)=(?) ORDER BY date ", (month,))
     
     def run_query(self,query,tuple):
         ''' return all of the transactions as a list of dicts.'''

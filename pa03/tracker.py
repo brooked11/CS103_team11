@@ -73,7 +73,7 @@ def process_args(arglist):
         if len(arglist)<2: # not = because will mess up sum cat
             print_menu()
         elif arglist[1]=="month":
-            print_transactions(transaction_list.sum_by_date()) #need to change
+            print_transactions(transaction_list.sum_by_month(arglist[2])) #need to change
         elif arglist[1] == "date":
             print_transactions(transaction_list.sum_by_date())
         elif arglist[1]=="cat":
