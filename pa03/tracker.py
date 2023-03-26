@@ -42,41 +42,41 @@ def print_menu():
             '''
             )
 
-def print_todos(todos):
-    ''' print the todo items '''
-    if len(todos)==0:
+def print_transactions(transactions):
+    ''' print the transaction items '''
+    if len(transactions)==0:
         print('no tasks to print')
         return
     print('\n')
     print("%-10s %-10s %-10s %-10s %-10s"%('item #','amount','category','date','description'))
     print('-'*40)
-    for item in todos:
+    for item in transactions:
         values = tuple(item.values()) #('item #','amount','category','date','description')
         print("%-10s %-10s %-10s %-10s %-10s"%values)
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction'''
-    todolist = Transaction()
+    transaction_list = Transaction()
     if arglist==[]:
         print_menu()
     elif arglist[0]=="quit":
         print("bye")
         sys.exit(0)
     elif arglist[0]=="show":
-        print_todos(todolist.select_active())
+        print_transactions(transaction_list.select_active())
     elif arglist[0]=="showall":
-        print_todos(todos = todolist.select_all())
+        print_transactions(transactions = transaction_list.select_all())
     elif arglist[0]=='add':
         if len(arglist)!=5: #doesn't work if add is by itself
             print_menu()
         else:
-            todo = {'amount':arglist[1],'category':arglist[2],'date':arglist[3], 'description': arglist[4]}
-            todolist.add(todo)
+            transaction = {'amount':arglist[1],'category':arglist[2],'date':arglist[3], 'description': arglist[4]}
+            transaction_list.add(transaction)
     elif arglist[0]=='delete':
         if len(arglist)!= 2:
             print_menu()
         else:
-            todolist.delete(arglist[1])
+            transaction_list.delete(arglist[1])
     elif arglist[0]=='menu':
         print_menu()
     else:
@@ -104,6 +104,6 @@ def toplevel():
         process_args(args)
         print('-'*40+'\n'*3)
 
-
+# this is the main function of the program
 toplevel()
 
