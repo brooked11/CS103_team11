@@ -74,4 +74,5 @@ class Transaction():
     ### for testing purposes only ###
     # by Simon and Anna
     def delete_all(self):
+        ''' delete all of the transactions '''
         return self.run_query("DELETE FROM 'transaction'",())
