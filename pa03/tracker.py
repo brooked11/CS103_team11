@@ -48,11 +48,13 @@ def print_transactions(transactions):
         print('no tasks to print')
         return
     print('\n')
-    print("%-10s %-10s %-10s %-10s %-10s"%('item #','amount','category','date','description'))
-    print('-'*40)
+    #print("%-10s %-10s %-10s %-10s %-10s"%('item #','amount','category','date','description'))
+    print(f"{'item #':<10s} {'amount':<10s} {'caterogy':<10s} {'date':<10s} {'description':<10s}")
+    print('-'*60)
     for item in transactions:
         values = tuple(item.values()) #('item #','amount','category','date','description')
-        print("%-10s %-10s %-10s %-10s %-10s"%values)
+        #print(f"%-10s %-10s %-10s %-10s %-10s"%values)
+        print(f"{values[0]:<10d} {values[1]:<10.2f} {values[2]:<10s} {values[3]:<10s} {values[4]:<10s}")
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction'''
@@ -74,7 +76,8 @@ def process_args(arglist):
         if len(arglist)!=5: #doesn't work if add is by itself
             print_menu()
         else:
-            transaction = {'amount':arglist[1],'category':arglist[2],'date':arglist[3], 'description': arglist[4]}
+            transaction = {'amount':arglist[1],'category':arglist[2],'date':arglist[3],
+                            'description': arglist[4]}
             transaction_list.add(transaction)
     elif arglist[0]=='delete':
         if len(arglist)!= 2:
@@ -101,12 +104,12 @@ def toplevel():
                 # join everything after the name as a string
                 args = ['add',args[1],args[2],args[3]," ".join(args[4:])]
             process_args(args)
-            print('-'*40+'\n'*3)
+            print('-'*60+'\n'*3)
     else:
         # read the args and process them
         args = sys.argv[1:]
         process_args(args)
-        print('-'*40+'\n'*3)
+        print('-'*60+'\n'*3)
 
 # this is the main function of the program
 toplevel()
