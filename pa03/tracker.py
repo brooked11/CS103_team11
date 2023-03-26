@@ -65,7 +65,7 @@ def process_args(arglist):
         print("bye")
         sys.exit(0)
     elif arglist[0]=="show":
-        print(transaction_list.select_active()[0])
+        print(transaction_list.select_active()[-1]) # TO BE REMOVE -- debugging 
         print_transactions(transaction_list.select_active())
     elif arglist[0]=="showall":
         print_transactions(transaction_list.select_all())

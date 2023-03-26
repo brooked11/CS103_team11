@@ -17,23 +17,25 @@ or if none is provided, it will use the default database tracker.db
 import sqlite3
 # import os
 
-def toDict(t):
+def to_dict(item):
     ''' t is a tuple (rowid,amount,category,date,description)'''
-    print('t='+str(t))
-    transaction = {'item #':t[0], 'amount':t[1], 'category':t[2], 'date':t[3], 'description':t[4]}
+    #print('item='+str(item)) # transaction.py should not print anything; this is for debugging
+    transaction = {'item #':item[0], 'amount':item[1], 
+                   'category':item[2], 'date':item[3], 'description':item[4]}
     return transaction
 
 class Transaction():
-    def __init__(self, dbfile='tracker.db'):
+    ''' ORM for the tracker database '''
+    def __init__(self):
         self.run_query('''CREATE TABLE IF NOT EXISTS 'transaction'
                     (amount double, category text, date text, description text)''',())
         
     def select_active(self):
-        ''' return all of the uncompleted tasks as a list of dicts.'''
+        ''' return all of the transactions as a list of dicts.'''
         return self.run_query("SELECT rowid,* FROM 'transaction' WHERE amount>0",())
     
     def select_all(self):
-        ''' return all of the tasks as a list of dicts.'''
+        ''' return all of the transactions as a list of dicts.'''
         return self.run_query("SELECT rowid,* from 'transaction'",())
     
     def add(self,item):
@@ -54,7 +56,7 @@ class Transaction():
         return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY category",())
     
     def run_query(self,query,tuple):
-        ''' return all of the uncompleted tasks as a list of dicts.'''
+        ''' return all of the transactions as a list of dicts.'''
         #con= sqlite3.connect(os.getenv('HOME')+'/transaction.db')
         con = sqlite3.connect('tracker.db')
         cur = con.cursor() 
@@ -62,7 +64,7 @@ class Transaction():
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        return [toDict(t) for t in tuples]
+        return [to_dict(t) for t in tuples]
     
     def delete_transaction(self,item_id):
         self.cursor.execute("DELETE FROM transactions WHERE rowid=?",(item_id,))
