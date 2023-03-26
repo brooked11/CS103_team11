@@ -61,37 +61,35 @@ def process_args(arglist):
     transaction_list = Transaction('tracker.db')
     if arglist==[]:
         print_menu()
-    elif arglist[0]=="quit":
+    elif arglist[0]=="quit": # by Anna
         print("bye")
         sys.exit(0)
-    elif arglist[0]=="show":
-        print_transactions(transaction_list.select_active())
-    elif arglist[0]=="showall":
+    elif arglist[0]=="show": # by Simon and Anna
         print_transactions(transaction_list.select_all())
     elif arglist[0]=="summarize":
         if len(arglist)<2: # not = because will mess up sum cat
             print_menu()
-        elif arglist[1]=="month":
+        elif arglist[1]=="month": # by Brooke
             print_transactions(transaction_list.sum_by_month(arglist[2])) #need to change
-        elif arglist[1] == "date":
+        elif arglist[1] == "date": # by Debbie
             print_transactions(transaction_list.sum_by_date())
-        elif arglist[1]=="cat":
+        elif arglist[1]=="cat": # by Brooke
             print_transactions(transaction_list.sum_by_category())
-        elif arglist[1]=="year":
+        elif arglist[1]=="year": # by Anna
             print_transactions(transaction_list.sum_by_year(arglist[2]))
-    elif arglist[0]=='add':
+    elif arglist[0]=='add': # by Anna
         if len(arglist)!=5: #doesn't work if add is by itself
             print_menu()
         else:
             transaction = {'amount':arglist[1],'category':arglist[2],'date':arglist[3],
                             'description': arglist[4]}
             transaction_list.add(transaction)
-    elif arglist[0]=='delete':
+    elif arglist[0]=='delete': # by Debbie
         if len(arglist)!= 2:
             print_menu()
         else:
             transaction_list.delete(arglist[1])
-    elif arglist[0]=='menu':
+    elif arglist[0]=='menu': # by Simon
         print_menu()
     else:
         print(arglist,"is not implemented")

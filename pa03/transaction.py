@@ -25,42 +25,38 @@ def to_dict(item):
     return transaction
 
 class Transaction():
-    ''' ORM for the tracker database '''
-    def __init__(self, db_file):
+    ''' ORM for the tracker database'''
+    def __init__(self, db_file): # by Simon
         self.db_file = db_file
         self.run_query('''CREATE TABLE IF NOT EXISTS 'transaction'
                     (amount double, category text, date text, description text)''',())
-        
-    def select_active(self):
-        ''' return all of the transactions as a list of dicts.'''
-        return self.run_query("SELECT rowid,* FROM 'transaction' WHERE amount>0",())
     
-    def select_all(self):
+    def select_all(self): # by everyone
         ''' return all of the transactions as a list of dicts.'''
         return self.run_query("SELECT rowid,* from 'transaction'",())
     
-    def add(self,item):
+    def add(self,item): # by Anna
         ''' create a transaction item and add it to the 'transaction' table '''
         return self.run_query("INSERT INTO 'transaction' VALUES(?,?,?,?)",
                               (item['amount'],item['category'],item['date'],item['description']))
     
-    def delete(self,item_id):
+    def delete(self,item_id): # by Debbie
         ''' delete a 'transaction' item '''
         return self.run_query("DELETE FROM 'transaction' WHERE rowid=(?)",(item_id,))
     
-    def sum_by_date(self):
+    def sum_by_date(self): # by Debbie
         ''' summarize transactions by date '''
         return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY date",())
     
-    def sum_by_category(self):
+    def sum_by_category(self): # by Brooke
         ''' summarize transactions by category '''
         return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY category",())
     
-    def sum_by_year(self, year):
+    def sum_by_year(self, year): # by Anna
         ''' summarize transactions by year '''
         return self.run_query("SELECT rowid,* FROM 'transaction' WHERE strftime('%Y', date)=(?) ORDER BY date ", (year,))
     
-    def sum_by_month(self, month):
+    def sum_by_month(self, month): # by Brooke
         ''' summarize transactions by year '''
         return self.run_query("SELECT rowid,* FROM 'transaction' WHERE strftime('%m', date)=(?) ORDER BY date ", (month,))
     
@@ -76,5 +72,6 @@ class Transaction():
         return [to_dict(t) for t in tuples]
 
     ### for testing purposes only ###
+    # by Simon and Anna
     def delete_all(self):
         return self.run_query("DELETE FROM 'transaction'",())
