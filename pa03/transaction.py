@@ -55,6 +55,10 @@ class Transaction():
         ''' summarize transactions by category '''
         return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY category",())
     
+    def sum_by_year(self, year):
+        ''' summarize transactions by year '''
+        return self.run_query("SELECT rowid,* FROM 'transaction' WHERE strftime('%Y', date)=(?) ORDER BY date ", (year,))
+    
     def run_query(self,query,tuple):
         ''' return all of the transactions as a list of dicts.'''
         #con= sqlite3.connect(os.getenv('HOME')+'/transaction.db')

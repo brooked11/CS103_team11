@@ -70,12 +70,14 @@ def process_args(arglist):
     elif arglist[0]=="showall":
         print_transactions(transaction_list.select_all())
     elif arglist[0]=="summarize":
-        if len(arglist)!=2:
+        if len(arglist)<2: # not = because will mess up sum cat
             print_menu()
         elif arglist[1]=="month":
             print_transactions(transaction_list.sum_by_month())
         elif arglist[1]=="cat":
             print_transactions(transaction_list.sum_by_category())
+        elif arglist[1]=="year":
+            print_transactions(transaction_list.sum_by_year(arglist[2]))
     elif arglist[0]=='add':
         if len(arglist)!=5: #doesn't work if add is by itself
             print_menu()
