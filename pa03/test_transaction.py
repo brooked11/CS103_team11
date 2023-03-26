@@ -38,6 +38,20 @@ def test_sum_by_year():
     assert transaction_list.sum_by_year('2010') == [{'item #': 4, 'amount': 4.74, 'category': 'supply', 'date': '2010-02-27', 'description': 'Pens'}, {'item #': 2, 'amount': 20.0, 'category': 'war', 'date': '2010-12-16', 'description': 'Canteen'}]
     assert transaction_list.sum_by_year('2017') == [{'item #': 5, 'amount': 5.0, 'category': 'food', 'date': '2017-01-19', 'description': 'Bread'}, {'item #': 3, 'amount': 3.5, 'category': 'media', 'date': '2017-03-14', 'description': 'Wii remote'}]
 
+def test_sum_by_month():
+    '''test the sum_by_month method'''
+    transaction_list = Transaction()
+
+    t6 = {'amount':6.74,'category':'food','date':'2010-05-27',
+                        'description': 'Pens'}
+    t7 = {'amount':7.00,'category':'supply','date':'2019-05-19',
+                        'description': 'Bread'}
+    
+    transaction_list.add(t6)
+    transaction_list.add(t7)
+
+    assert transaction_list.sum_by_month('05') == [{'item #': 6, 'amount': 6.74, 'category': 'food', 'date': '2010-05-27', 'description': 'Pens'}, {'item #': 7, 'amount': 7.0, 'category': 'supply', 'date': '2019-05-19', 'description': 'Bread'}]
+    
 def test_delete_all():
     '''test the delete_all method'''
     transaction_list = Transaction()
