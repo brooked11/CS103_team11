@@ -47,7 +47,7 @@ class Transaction():
         ''' delete a 'transaction' item '''
         return self.run_query("DELETE FROM 'transaction' WHERE rowid=(?)",(item_id,))
     
-    def sum_by_month(self):
+    def sum_by_date(self):
         ''' summarize transactions by month '''
         return self.run_query("SELECT rowid,* FROM 'transaction' ORDER BY date",())
     
