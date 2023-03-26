@@ -26,7 +26,8 @@ def to_dict(item):
 
 class Transaction():
     ''' ORM for the tracker database '''
-    def __init__(self):
+    def __init__(self, db_file):
+        self.db_file = db_file
         self.run_query('''CREATE TABLE IF NOT EXISTS 'transaction'
                     (amount double, category text, date text, description text)''',())
         
@@ -66,7 +67,7 @@ class Transaction():
     def run_query(self,query,tuple):
         ''' return all of the transactions as a list of dicts.'''
         #con= sqlite3.connect(os.getenv('HOME')+'/transaction.db')
-        con = sqlite3.connect('tracker.db')
+        con = sqlite3.connect(self.db_file)
         cur = con.cursor() 
         cur.execute(query,tuple)
         tuples = cur.fetchall()

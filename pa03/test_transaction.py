@@ -4,7 +4,7 @@ from transaction import Transaction
 
 def test_add():
     '''test the add method'''
-    transaction_list = Transaction()
+    transaction_list = Transaction('tracker.db')
     transaction = {'amount':11,'category':'food','date':'2019-01-01',
                         'description': 'test'}
 
@@ -19,7 +19,7 @@ def test_add():
     
 def test_sum_by_year():
     '''test the sum_by_year method'''
-    transaction_list = Transaction()
+    transaction_list = Transaction('tracker.db')
 
     t2 = {'amount':20,'category':'war','date':'2010-12-16',
                         'description': 'Canteen'}
@@ -40,7 +40,7 @@ def test_sum_by_year():
 
 def test_sum_by_month():
     '''test the sum_by_month method'''
-    transaction_list = Transaction()
+    transaction_list = Transaction('tracker.db')
 
     t6 = {'amount':6.74,'category':'food','date':'2010-05-27',
                         'description': 'Pens'}
@@ -54,7 +54,7 @@ def test_sum_by_month():
 
 def test_delete():
     '''test the delete method'''
-    transaction_list = Transaction()
+    transaction_list = Transaction('tracker.db')
  
     transaction_list.delete(5)
     transaction_list.delete(3)
@@ -66,7 +66,7 @@ def test_delete():
 
 def test_sum_by_date():
     '''test the sum_by_date method'''
-    transaction_list = Transaction()
+    transaction_list = Transaction('tracker.db')
 
     assert transaction_list.sum_by_date() == [{'item #': 4, 'amount': 4.74, 'category': 'supply', 'date': '2010-02-27', 'description': 'Pens'}, 
                                                           {'item #': 6, 'amount': 6.74, 'category': 'food', 'date': '2010-05-27', 'description': 'Pens'},
@@ -75,7 +75,7 @@ def test_sum_by_date():
 
 def test_sum_by_category():
    '''test the sum_by_category method'''
-   transaction_list = Transaction()
+   transaction_list = Transaction('tracker.db')
    
    assert transaction_list.sum_by_category() == [{'item #': 1, 'amount': 11.0, 'category': 'food', 'date': '2019-01-01', 'description': 'test'},
                                                   {'item #': 6, 'amount': 6.74, 'category': 'food', 'date': '2010-05-27', 'description': 'Pens'},
@@ -85,6 +85,6 @@ def test_sum_by_category():
 
 def test_delete_all():
     '''test the delete_all method'''
-    transaction_list = Transaction()
+    transaction_list = Transaction('tracker.db')
     transaction_list.delete_all()
     assert transaction_list.select_active() == []

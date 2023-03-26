@@ -58,7 +58,7 @@ def print_transactions(transactions):
 
 def process_args(arglist):
     ''' examine args and make appropriate calls to Transaction'''
-    transaction_list = Transaction()
+    transaction_list = Transaction('tracker.db')
     if arglist==[]:
         print_menu()
     elif arglist[0]=="quit":
