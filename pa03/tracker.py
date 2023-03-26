@@ -29,8 +29,8 @@ import sys
 
 def print_menu():
     ''' print an explanation of how to use this command '''
-    print('''menu:
-            0. quit
+    print('''menu of available commands:
+            0. quit : exit the program
             1. show transactions
             2. add transaction
             3. delete transaction
@@ -38,7 +38,7 @@ def print_menu():
             5. summarize transactions by month
             6. summarize transactions by year
             7. summarize transactions by category
-            8. type 'menu' : print this menu
+            8. menu : print this menu
             '''
             )
 
