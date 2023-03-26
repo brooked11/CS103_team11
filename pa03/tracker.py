@@ -30,14 +30,14 @@ from transaction import Transaction
 def print_menu():
     ''' print an explanation of how to use this command '''
     print('''commands: usage
-            0. quit : exit the program
-            1. show : show all transactions
-            2. add amount category date description : add transaction
-            3. delete transaction_id : delete transaction
-            4. summarize date : summarize transactions by date
-            5. summarize month : summarize transactions by month
-            6. summarize year : summarize transactions by year
-            7. summarize cat : summarize transactions by category
+            0. quit : exits the program
+            1. show : shows all transactions
+            2. add amount category date description : adds a transaction
+            3. delete transaction_id : deletes a transaction
+            4. summarize date : summarizes transactions by their date
+            5. summarize month MM : summarize transactions by their month
+            6. summarize year YYYY: summarize transactions by their year
+            7. summarize cat : summarize transactions by their category
             8. menu : print this menu
             '''
             )
