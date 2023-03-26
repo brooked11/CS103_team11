@@ -11,7 +11,7 @@ to Python Dictionaries as follows:
 In place of SQL queries, we will have method calls.
 
 This app will store the data in a SQLite database provided by the user,
-or if none is provided, it will use the default database transaction.db
+or if none is provided, it will use the default database tracker.db
 
 '''
 import sqlite3
@@ -20,8 +20,8 @@ import sqlite3
 def toDict(t):
     ''' t is a tuple (rowid,amount,category,date,description)'''
     print('t='+str(t))
-    todo = {'item #':t[0], 'amount':t[1], 'category':t[2], 'date':t[3], 'description':t[4]}
-    return todo
+    transaction = {'item #':t[0], 'amount':t[1], 'category':t[2], 'date':t[3], 'description':t[4]}
+    return transaction
 
 class Transaction():
     def __init__(self, dbfile='tracker.db'):
@@ -37,7 +37,7 @@ class Transaction():
         return self.run_query("SELECT rowid,* from 'transaction'",())
     
     def add(self,item):
-        ''' create a todo item and add it to the 'transaction' table '''
+        ''' create a transaction item and add it to the 'transaction' table '''
         return self.run_query("INSERT INTO 'transaction' VALUES(?,?,?,?)",
                               (item['amount'],item['category'],item['date'],item['description']))
     
