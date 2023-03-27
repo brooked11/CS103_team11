@@ -102,8 +102,21 @@ item #    amount         category       date           description
 command> summarize month 03
 
 
-item #    amount         category       date           description
+item #    amount         category       date           description    
 --------------------------------------------------
+3         3.14           fishing        2019-03-11     fishing with pies
+1         5.23           fishing        2023-03-26     fishing hooks  
+--------------------------------------------------
+
+
+
+command> summarize year 2019
+
+
+item #    amount         category       date           description    
+--------------------------------------------------
+3         3.14           fishing        2019-03-11     fishing with pies
+2         11.99          hiking         2019-06-25     hiking in Vermont
 --------------------------------------------------
 
 
