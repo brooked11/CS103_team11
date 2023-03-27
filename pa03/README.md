@@ -121,6 +121,22 @@ item #    amount         category       date           description
 
 
 
+command> delete 3
+--------------------------------------------------
+
+
+
+command> show
+
+
+item #    amount         category       date           description
+--------------------------------------------------
+1         5.23           fishing        2023-03-26     fishing hooks
+2         11.99          hiking         2019-06-25     hiking in Vermont
+--------------------------------------------------
+
+
+
 command> menu
 commands: usage
             0. quit : exits the program
