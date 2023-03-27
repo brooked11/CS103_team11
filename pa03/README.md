@@ -1,5 +1,5 @@
 # pylint script for transaction.py
-
+```
 ************* Module transaction
 transaction.py:23:54: C0303: Trailing whitespace (trailing-whitespace)
 transaction.py:33:0: C0303: Trailing whitespace (trailing-whitespace)
@@ -17,9 +17,9 @@ transaction.py:63:29: W0622: Redefining built-in 'tuple' (redefined-builtin)
 
 ------------------------------------------------------------------
 Your code has been rated at 5.94/10 (previous run: 5.94/10, +0.00)
-
+```
 # pylint script for tracker.py
-
+```
 ************* Module tracker
 tracker.py:102:41: C0303: Trailing whitespace (trailing-whitespace)
 tracker.py:121:0: C0305: Trailing newlines (trailing-newlines)
@@ -27,9 +27,9 @@ tracker.py:59:0: R0912: Too many branches (17/12) (too-many-branches)
 
 ------------------------------------------------------------------
 Your code has been rated at 9.51/10 (previous run: 9.52/10, -0.02)
-
+```
 # pytest script for transaction.py
-
+```
 ========================================================================== test session starts ==========================================================================
 platform linux -- Python 3.10.6, pytest-7.2.1, pluggy-1.0.0 -- /usr/bin/python3
 cachedir: .pytest_cache
@@ -46,7 +46,7 @@ test_transaction.py::test_sum_by_category PASSED                                
 test_transaction.py::test_delete_all PASSED                                                                                                                       [100%]
 
 =========================================================================== 7 passed in 2.05s ===========================================================================
-
+```
 # a script of running tracker.py and show all the added features
 ```
 commands: usage
