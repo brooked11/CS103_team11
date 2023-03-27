@@ -48,7 +48,7 @@ test_transaction.py::test_delete_all PASSED                                     
 =========================================================================== 7 passed in 2.05s ===========================================================================
 
 # a script of running tracker.py and show all the added features
-
+```
 commands: usage
             0. quit : exits the program
             1. show : shows all transactions
@@ -126,4 +126,4 @@ commands: usage
 
 command> quit
 bye
-
+```
