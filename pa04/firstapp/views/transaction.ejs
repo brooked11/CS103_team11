@@ -1,1 +1,27 @@
-<h1>Transactions with Team 11!</h1>
+<h1>Transactions by <%= user.username %> </h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>description</th>
+            <th>amount</th>
+            <th>category</th>
+            <th>date</th>
+            <th>delete</th>
+            <th>edit</th>
+
+        </tr>
+    </thead>
+</table>
+<br>
+<form method="post" action="todo">
+    <h1>Add a New Transaction</h1>
+    <input type="text" name="description" placeholder="description">
+    <br>
+    <input type="text" name="category" placeholder="category">
+    <br>
+    <input type="number" name="amount" placeholder="amount">
+    <br>
+    <input type="date" name="date" placeholder="mm/dd/yyyy">
+    <br>
+    <input type="submit" value="store">
+</form>
