@@ -18,8 +18,26 @@ isLoggedIn = (req,res,next) => {
   router.get('/transaction/',
   isLoggedIn,
   async (req, res, next) => {
+    const sort = req.query.sort
     let items= await TransactionItems.find({userId:req.user._id});
-    res.render('transaction',{items});
+
+    if (sort=='category') {
+      items = await TransactionItems.find({userId:req.user._id})
+                                    .sort({category:1}) 
+    } 
+    else if (sort=='date') {
+      items = await TransactionItems.find({userId:req.user._id})
+                                    .sort({date:-1})
+    } 
+    else if (sort=='amount') {
+      items = await TransactionItems.find({userId:req.user._id})
+                                    .sort({amount:-1})
+    } 
+    else if (sort=='description') {
+      items = await TransactionItems.find({userId:req.user._id})
+                                    .sort({description:1})
+    } 
+    res.render('transaction',{items,sort});
   }
 );
 

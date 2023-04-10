@@ -1,12 +1,12 @@
 <h1>Transactions by <%= user.username %> </h1>
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th><a class="btn btn-primary" href="/transaction/groupByCategory" role="button">group by category</a></th>
-            <th><a class="btn btn-primary" href="/about" role="button">sort by category</a></th>
-            <th><a class="btn btn-primary" href="/about" role="button">sort by amount</a></th>
-            <th><a class="btn btn-primary" href="/about" role="button">sort by description</a></th>
-            <th><a class="btn btn-primary" href="/about" role="button">sort by date</a></th>
+            <th><a class="btn btn-primary" href="?sort=category" role="button">sort by category</a></th>
+            <th><a class="btn btn-primary" href="?sort=amount" role="button">sort by amount</a></th>
+            <th><a class="btn btn-primary" href="?sort=description" role="button">sort by description</a></th>
+            <th><a class="btn btn-primary" href="?sort=date" role="button">sort by date</a></th>
         </tr>
     </thead>
 </table>
@@ -35,11 +35,8 @@
             <% }); %>
     </tbody>
 </table>
-<%= items %>
-
-
-
-
+<!-- <%= items %> -->
+<!-- comments raw data out -->
 <br>
 <form method="post" action="transaction">
     <h1>Add a New Transaction</h1>
@@ -47,7 +44,7 @@
     <br>
     <input type="text" name="category" placeholder="category">
     <br>
-    <input type="number" name="amount" placeholder="amount">
+    <input type="number" step="any" name="amount" placeholder="amount">
     <br>
     <input type="date" name="date" placeholder="mm/dd/yyyy">
     <br>
