@@ -25,19 +25,19 @@ isLoggedIn = (req,res,next) => {
 
 
 /* add the value in the body to the list associated to the key */
-// router.post('/transaction',
-//   isLoggedIn,
-//   async (req, res, next) => {
-//       const transaction = new TransactionItems(
-//         {description:req.body.description,
-//           amount: req.body.amount,
-//           category: req.body.category,
-//           date: req.body.date,
-//          userId: req.user._id
-//         })
-//       await transaction.save();
-//       res.redirect('/transaction')
-// });
+router.post('/transaction',
+  isLoggedIn,
+  async (req, res, next) => {
+      const transaction = new TransactionItems(
+        {description:req.body.description,
+          amount: req.body.amount,
+          category: req.body.category,
+          date: req.body.date,
+          userId: req.user._id
+        })
+      await transaction.save();
+      res.redirect('/transaction')
+});
 
 // router.get('/todo/remove/:itemId',
 //   isLoggedIn,
