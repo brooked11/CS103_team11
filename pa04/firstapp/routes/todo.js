@@ -109,7 +109,7 @@ router.post('/todo/updateTodoItem',
       res.redirect('/toDo')
 });
 
-router.get('/todo/byUser',
+router.get('/todo/byUser', // want to see all of the users and all of their transactions
   isLoggedIn,
   async (req, res, next) => {
       let results =
