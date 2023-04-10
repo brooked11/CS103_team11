@@ -39,35 +39,43 @@ router.post('/transaction',
       res.redirect('/transaction')
 });
 
-// router.get('/todo/remove/:itemId',
-//   isLoggedIn,
-//   async (req, res, next) => {
-//       console.log("inside /todo/remove/:itemId")
-//       await ToDoItem.deleteOne({_id:req.params.itemId});
-//       res.redirect('/toDo')
-// });
+router.get('/transaction/remove/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /transaction/remove/:itemId")
+      await TransactionItems.deleteOne({_id:req.params.itemId});
+      res.redirect('/transaction')
+});
 
-// router.get('/todo/edit/:itemId',
-//   isLoggedIn,
-//   async (req, res, next) => {
-//       console.log("inside /todo/edit/:itemId")
-//       const item = 
-//        await ToDoItem.findById(req.params.itemId);
-//       //res.render('edit', { item });
-//       res.locals.item = item
-//       res.render('edit')
-//       //res.json(item)
-// });
+router.get('/transaction/edit/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /transaction/edit/:itemId")
+      const item = 
+       await TransactionItems.findById(req.params.itemId);
+      //res.render('edit', { item });
+      res.locals.item = item
+      res.render('edit')
+      //res.json(item)
+});
 
-// router.post('/transaction/updateTransactionItem',
-//   isLoggedIn,
-//   async (req, res, next) => {
-//       const {itemId,item,priority} = req.body;
-//       console.log("inside /todo/complete/:itemId");
-//       await ToDoItem.findOneAndUpdate(
-//         {_id:itemId},
-//         {$set: {item,priority}} );
-//       res.redirect('/transaction')
-// });
+router.post('/transaction/updateTransactionItem',
+  isLoggedIn,
+  async (req, res, next) => {
+      const {itemId,description,amount,category,date} = req.body;
+      console.log("inside /transaction/complete/:itemId");
+      await TransactionItems.findOneAndUpdate(
+        {_id:itemId},
+        {$set: {description,amount,category,date}} );
+      res.redirect('/transaction')
+});
+
+router.get('/transaction/groupByCategory',
+  isLoggedIn,
+  async (req, res, next) => {
+      //console.log("inside /transaction/remove/:itemId")
+      await TransactionItems.deleteOne({_id:req.params.itemId});
+      res.redirect('/transaction/groupByCategory')
+});
 
 module.exports = router;

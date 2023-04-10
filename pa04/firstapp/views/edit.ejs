@@ -1,20 +1,27 @@
 <pre>
     <%= JSON.stringify(item,null,5) %>
 </pre>
-<form method="post" action="/todo/updateTodoItem">
+<form method="post" action="/transaction/updateTransactionItem">
     <input type="hidden" name="itemId" value="<%= item._id %>">
     new item: 
     <input type="text" 
-           value="<%= item.item %>"
-           name="item"><br>
-    priority: <select name="priority">
-       <% [1,2,3,4,5].map(p => { %>
-        <option 
-              <%= p==item.priority?'selected':'' %>>
-              <%= p %>
-       </option>
-       <% }) %>
-    </select>
+           value="<%= item.description %>"
+           placeholder="new item name"
+           name="description"><br>
+    new amount:
+    <input type="text"
+            value="<%= item.amount %>"
+            placeholder="amount"
+            name="amount"><br>
+    category:
+    <input type="text"
+            value="<%= item.category %>"
+            placeholder="category"
+            name="category"><br>
+    date:
+    <input type="date"
+            value="<%= item.date %>"
+            name="date"><br>
     <br>
     <input type="submit" value="store">
 </form>
