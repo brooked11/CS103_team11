@@ -15,9 +15,9 @@
             const categories = {};
             items.forEach((item) => {
                 if (categories[item.category]) {
-                    categories[item.category] += parseInt(item.amount);
+                    categories[item.category] += parseFloat(item.amount);
                   } else {
-                    categories[item.category] = parseInt(item.amount);
+                    categories[item.category] = parseFloat(item.amount);
                   }
             });
             Object.keys(categories).forEach((category) => {
