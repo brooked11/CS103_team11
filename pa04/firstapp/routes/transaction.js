@@ -91,9 +91,11 @@ router.post('/transaction/updateTransactionItem',
 router.get('/transaction/groupByCategory',
   isLoggedIn,
   async (req, res, next) => {
-      //console.log("inside /transaction/remove/:itemId")
-      await TransactionItems.deleteOne({_id:req.params.itemId});
-      res.redirect('/transaction/groupByCategory')
+      const sort = req.query.sort
+      items = await TransactionItems.find({userId:req.user._id})
+                                    .sort({category:1}) 
+      console.log("inside /transaction/groupByCategory")
+      res.render('groupByCategory',{items,sort})
 });
 
 module.exports = router;
