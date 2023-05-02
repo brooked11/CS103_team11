@@ -106,6 +106,10 @@ app.get('/about',
   }
 )
 
+app.get('/annaApp', (req,res,next) => {
+  res.render('annaApp');
+})
+
 app.use(toDoRouter);
 app.use(weatherRouter);
 
