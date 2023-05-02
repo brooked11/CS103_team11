@@ -109,6 +109,18 @@ app.get('/about',
 
 app.use('/annaApp', annaAppRouter);
 
+app.get('/simonApp', (req,res,next) => {
+  res.render('simonApp');
+})
+
+app.get('/brookeApp', (req,res,next) => {
+  res.render('brookeApp');
+})
+
+app.get('/debbieApp', (req,res,next) => {
+  res.render('debbieApp');
+})
+
 app.use(toDoRouter);
 app.use(weatherRouter);
 
