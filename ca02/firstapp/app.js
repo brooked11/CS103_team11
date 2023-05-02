@@ -7,6 +7,7 @@ const layouts = require("express-ejs-layouts");
 const pw_auth_router = require('./routes/pwauth')
 const toDoRouter = require('./routes/todo');
 const weatherRouter = require('./routes/weather');
+const annaAppRouter = require('./routes/annaApp');
 
 const User = require('./models/User');
 
@@ -106,9 +107,7 @@ app.get('/about',
   }
 )
 
-app.get('/annaApp', (req,res,next) => {
-  res.render('annaApp');
-})
+app.use('/annaApp', annaAppRouter);
 
 app.use(toDoRouter);
 app.use(weatherRouter);
