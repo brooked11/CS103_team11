@@ -1,4 +1,8 @@
-const router = require("express").Router();
+
+const express = require('express');
+const router = express.Router();
+const User = require('../models/User')
+//const router = require("express").Router();
 
 // async function annaMethod(modelEngine, prompt) {
 //     const openai = require('openai');
@@ -56,3 +60,5 @@ const router = require("express").Router();
 //             <p><input type=submit value="get response">
 //         </form>
 //         '''
+
+module.exports = router;

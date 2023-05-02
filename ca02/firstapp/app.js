@@ -8,6 +8,7 @@ const pw_auth_router = require('./routes/pwauth')
 const toDoRouter = require('./routes/todo');
 const weatherRouter = require('./routes/weather');
 const annaAppRouter = require('./routes/annaApp');
+const simonAppRouter = require('./routes/simonApp');
 
 const User = require('./models/User');
 
@@ -107,19 +108,8 @@ app.get('/about',
   }
 )
 
-app.use('/annaApp', annaAppRouter);
-
-app.get('/simonApp', (req,res,next) => {
-  res.render('simonApp');
-})
-
-app.get('/brookeApp', (req,res,next) => {
-  res.render('brookeApp');
-})
-
-app.get('/debbieApp', (req,res,next) => {
-  res.render('debbieApp');
-})
+app.use(annaAppRouter);
+app.use(simonAppRouter);
 
 app.use(toDoRouter);
 app.use(weatherRouter);
