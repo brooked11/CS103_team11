@@ -3,9 +3,20 @@
 */
 const express = require('express');
 const router = express.Router();
-const ToDoItem = require('../models/ToDoItem')
+const ToDoItem = require('../models/SimonGPT')
 const User = require('../models/User')
 
+// configure dotenv // install: npm install dotenv
+require("dotenv").config();
+
+// import modules from OpenAI library
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
 
 /*
 this is a very simple server which maintains a key/value
@@ -26,36 +37,29 @@ router.get('/simonApp/',
   isLoggedIn,
   async (req, res, next) => {
       const show = req.query.show
-      const completed = show=='completed'
-      let items=[]
-      if (show) { // show is completed or todo, so just show some items
-        items = 
-          await ToDoItem.find({userId:req.user._id, completed})
-                        .sort({completed:1,priority:1,createdAt:1})
-      }else {  // show is null, so show all of the items
-        items = 
-          await ToDoItem.find({userId:req.user._id})
-                        .sort({completed:1,priority:1,createdAt:1})
-
-      }
-            res.render('simonApp',{items,show,completed});
+    items = 
+        await ToDoItem.find({userId:req.user._id})
+            res.render('simonApp',{items});
 });
-
 
 
 /* add the value in the body to the list associated to the key */
 router.post('/simonApp',
   isLoggedIn,
   async (req, res, next) => {
-      const todo = new ToDoItem(
-        {item:req.body.item,
+      const prompt = req.body.userInput;
+      const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt,
+      });
+      const request = new ToDoItem(
+        {input:req.body.userInput,
+         output: response.data.choices[0].text,
          createdAt: new Date(),
-         completed: false,
-         priority: parseInt(req.body.priority),
          userId: req.user._id
         })
-      await todo.save();
-      res.redirect('/todo')
+      await request.save();
+      res.redirect('/simonApp')
 });
 
 router.get('/simonApp/remove/:itemId',
