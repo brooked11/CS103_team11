@@ -12,9 +12,6 @@ const simonAppRouter = require('./routes/simonApp');
 const brookeAppRouter = require('./routes/brookeApp');
 require("dotenv").config();
 
-const User = require('./models/User');
-const gpt = require('./models/GPT');
-
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
 /* **************************************** */

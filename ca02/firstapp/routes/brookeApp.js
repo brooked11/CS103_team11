@@ -3,7 +3,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const brookeAppItem = require('../models/GPT')
+const brookeAppItem = require('../models/BrookeGPT')
 const User = require('../models/User')
 
 // configure dotenv // install: npm install dotenv
