@@ -49,7 +49,7 @@ router.post('/brookeGpt',
       const prompt = req.body.userInput;
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt,
+        prompt: prompt, //'Insert comments into this code: ${prompt}'
       });
       const request = new brookeAppItem(
         {input:req.body.userInput,
