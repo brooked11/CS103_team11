@@ -13,14 +13,14 @@
     <tbody>
         <%
             const categories = {};
-            items.forEach((item) => {
-                if (categories[item.category]) {
+            items.forEach((item) => { <!-- Loops through the items array -->
+                if (categories[item.category]) { <!-- if this category property is already in the categories object -->
                     categories[item.category] += parseInt(item.amount);
                   } else {
-                    categories[item.category] = parseInt(item.amount);
+                    categories[item.category] = parseInt(item.amount); <!-- create new category property and set its value to parseInt(item.amount) -->
                   }
             });
-            Object.keys(categories).forEach((category) => {
+            Object.keys(categories).forEach((category) => { <!-- returns an array of the object's keys (property names)-->
         %>
         <tr>
                <td> <%= category %> </td>

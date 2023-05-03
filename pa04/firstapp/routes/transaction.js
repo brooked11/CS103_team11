@@ -95,7 +95,7 @@ router.get('/transaction/groupByCategory',
       items = await TransactionItems.find({userId:req.user._id})
                                     .sort({category:1}) 
       console.log("inside /transaction/groupByCategory")
-      res.render('groupByCategory',{items,sort})
+      res.render('groupByCategory',{items}) // description
 });
 
 module.exports = router;
