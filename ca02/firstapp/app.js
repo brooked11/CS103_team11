@@ -114,12 +114,6 @@ app.use(annaAppRouter);
 app.use(simonAppRouter);
 app.use(brookeAppRouter);
 
-
-app.get('/brookeApp', (req,res,next) => {
-  isLoggedIn,
-  res.render('brookeApp');
-})
-
 app.get('/debbieApp', (req,res,next) => {
   res.render('debbieApp');
 })

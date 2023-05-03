@@ -3,14 +3,24 @@
 */
 const express = require('express');
 const router = express.Router();
-const ToDoItem = require('../models/ToDoItem')
+const brookeAppItem = require('../models/GPT')
 const User = require('../models/User')
 
+// configure dotenv // install: npm install dotenv
+require("dotenv").config();
+
+// import modules from OpenAI library
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
 
 /*
 this is a very simple server which maintains a key/value
 store using an object where the keys and values are lists of strings
-
 */
 
 isLoggedIn = (req,res,next) => {
@@ -21,115 +31,85 @@ isLoggedIn = (req,res,next) => {
   }
 }
 
-router.get('/gpt', function(req, res, next) {
-    const generateGptResponse = async (modelEngine, prompt) => {
-        const openaiClient = new openai.OpenAI({apiKey: openaiApiKey});
-      
-        const response = await openaiClient.completions.create({
-          engine: modelEngine,
-          prompt: `Insert comments into the following code: ${prompt}`,
-          maxTokens: 1024,
-          n: 1,
-          stop: null,
-          temperature: 0.8,
-        });
-
-        res.send(response);
-      
-        return response.choices[0].text;
-      }
+// get the value associated to the key
+router.get('/brookeApp/',
+  isLoggedIn,
+  async (req, res, next) => {
+      const show = req.query.show
+    items = 
+        await brookeAppItem.find({userId:req.user._id})
+            res.render('brookeApp',{items});
 });
-
 
 
 /* add the value in the body to the list associated to the key */
-router.post('/todo',
+router.post('/brookeApp',
   isLoggedIn,
   async (req, res, next) => {
-      const todo = new ToDoItem(
-        {item:req.body.item,
+      const prompt = req.body.userInput;
+      const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt,
+      });
+      const request = new brookeAppItem(
+        {input:req.body.userInput,
+         output: response.data.choices[0].text,
          createdAt: new Date(),
-         completed: false,
-         priority: parseInt(req.body.priority),
          userId: req.user._id
         })
-      await todo.save();
-      res.redirect('/todo')
+      await request.save();
+      res.redirect('/brookeApp')
 });
 
-router.get('/todo/remove/:itemId',
+router.get('/brookeApp/remove/:itemId',
   isLoggedIn,
   async (req, res, next) => {
-      console.log("inside /todo/remove/:itemId")
-      await ToDoItem.deleteOne({_id:req.params.itemId});
-      res.redirect('/toDo')
+      console.log("inside /brookeApp/remove/:itemId")
+      await brookeAppItem.deleteOne({_id:req.params.itemId});
+      res.redirect('/brookeApp')
 });
 
-router.get('/todo/complete/:itemId',
+router.get('/brookeApp/complete/:itemId',
   isLoggedIn,
   async (req, res, next) => {
-      console.log("inside /todo/complete/:itemId")
-      await ToDoItem.findOneAndUpdate(
+      console.log("inside /brookeApp/complete/:itemId")
+      await brookeAppItem.findOneAndUpdate(
         {_id:req.params.itemId},
         {$set: {completed:true}} );
-      res.redirect('/toDo')
+      res.redirect('/brookeApp')
 });
 
-router.get('/todo/uncomplete/:itemId',
+router.get('/brookeApp/uncomplete/:itemId',
   isLoggedIn,
   async (req, res, next) => {
-      console.log("inside /todo/complete/:itemId")
-      await ToDoItem.findOneAndUpdate(
+      console.log("inside /brookeApp/complete/:itemId")
+      await brookeAppItem.findOneAndUpdate(
         {_id:req.params.itemId},
         {$set: {completed:false}} );
-      res.redirect('/toDo')
+      res.redirect('/brookeApp')
 });
 
-router.get('/todo/edit/:itemId',
+router.get('/brookeApp/edit/:itemId',
   isLoggedIn,
   async (req, res, next) => {
-      console.log("inside /todo/edit/:itemId")
+      console.log("inside /brookeApp/edit/:itemId")
       const item = 
-       await ToDoItem.findById(req.params.itemId);
+       await brookeAppItem.findById(req.params.itemId);
       //res.render('edit', { item });
       res.locals.item = item
       res.render('edit')
       //res.json(item)
 });
 
-router.post('/todo/updateTodoItem',
+router.post('/brookeApp/updatebrookeAppItem',
   isLoggedIn,
   async (req, res, next) => {
       const {itemId,item,priority} = req.body;
-      console.log("inside /todo/complete/:itemId");
-      await ToDoItem.findOneAndUpdate(
+      console.log("inside /brookeApp/complete/:itemId");
+      await brookeAppItem.findOneAndUpdate(
         {_id:itemId},
         {$set: {item,priority}} );
-      res.redirect('/toDo')
+      res.redirect('/brookeApp')
 });
-
-router.get('/todo/byUser',
-  isLoggedIn,
-  async (req, res, next) => {
-      let results =
-            await ToDoItem.aggregate(
-                [ 
-                  {$group:{
-                    _id:'$userId',
-                    total:{$count:{}}
-                    }},
-                  {$sort:{total:-1}},              
-                ])
-        // if you comment out lines 125-128 you can see the raw data      
-        results = 
-           await User.populate(results,
-                   {path:'_id',
-                   select:['username','age']})
-
-        //res.json(results)
-        res.render('summarizeByUser',{results})
-});
-
-
 
 module.exports = router;
