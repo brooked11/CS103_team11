@@ -8,7 +8,6 @@ var gptSchema = Schema( {
   request: String,
   answer: String,
   createdAt: Date,
-
   userId: {type:ObjectId, ref:'user' }
 } );
 
