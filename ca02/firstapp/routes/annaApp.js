@@ -1,50 +1,53 @@
-const router = require("express").Router();
+const express = require("express")
+const router = express.Router();
+const annaAppItem = require('../models/GPT')
+const User = require('../models/User')
 
-router.get('/annaApp', function(req, res, next) {
-    res.render('annaApp');
+require("dotenv").config();
+
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-////////////////////////////////////////////////////////////////////////
+const openai = new OpenAIApi(configuration);
 
-// router.post('/gpt', async (req,res,next) => {
-//     const userInput = req.body.userInput;
+isLoggedIn = (req, res, next) => {
+  if (res.locals.loggedIn) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+}
 
-//     const gptResponse = await openai.createCompletion({
-//         model: "text-davinci-003",
-//         prompt: "User input",
-//     });
+router.get('/annaApp',
+  isLoggedIn,
 
-//     const completion = gptResponse.data.choices[0].text;
+  async function (req, res, next) {
+    const showItems = req.query.showItems;
+    items = await annaAppItem.find({ userId: req.user._id })
+    res.render('annaApp', { items });
+  });
 
-//     return res.status(200).json({
-//         sucess: true,
-//         message: completion,
+router.post('/gpt',
+  isLoggedIn,
+  async (req, res, next) => {
+    const prompt = req.body.userInput;
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt,
+    });
 
-//     });
-// });
-
-//////////////////////////////////////////////////////////
-
-const openai = require('openai');
-const openaiApiKey = 'YOUR_API_KEY';
-
-router.get('/gpt', function(req, res, next) {
-    const generateGptResponse = async (modelEngine, prompt) => {
-        const openaiClient = new openai.OpenAI({apiKey: openaiApiKey});
-      
-        const response = await openaiClient.completions.create({
-          engine: modelEngine,
-          prompt: `translate statement after comma into language inputted before comma ${prompt}`,
-          maxTokens: 1024,
-          n: 1,
-          stop: null,
-          temperature: 0.8,
-        });
-
-        res.send(response);
-      
-        return response.choices[0].text;
-      }
-});
+    const request = new annaAppItem(
+      {
+        input: req.body.userInput,
+        output: response.data.choices[0].text,
+        createdAt: new Date(),
+        userId: req.user._id
+      })
+    await request.save();
+    res.redirect('/annaApp')
+  });
 
 module.exports = router;

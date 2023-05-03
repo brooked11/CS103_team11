@@ -11,7 +11,7 @@ const annaAppRouter = require('./routes/annaApp');
 const simonAppRouter = require('./routes/simonApp');
 
 const User = require('./models/User');
-const gpt = require('./models/gpt');
+const gpt = require('./models/GPT');
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */

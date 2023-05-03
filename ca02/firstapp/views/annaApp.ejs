@@ -1,10 +1,13 @@
-<!-- anna-form.ejs -->
 <h1>Anna's method</h1>
 <form action="/gpt" method="POST">
 
     <label for="inputRequest">Request</label>
-    <input type="text" name="inputRequest" id="inputRequest" placeholder="Enter your request here" required>
+    <input type="text" name="userInput" placeholder="Enter your request here" required>
 
     <button type="submit" value="submit">Submit</button>
 
 </form>
+
+<br>
+
+<%= items %>

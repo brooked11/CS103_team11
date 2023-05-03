@@ -4,11 +4,11 @@ const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-var gptSchema = Schema( {
-  request: String,
-  answer: String,
+var GPTSchema = Schema( {
+  input: String,
+  output: String,
   createdAt: Date,
   userId: {type:ObjectId, ref:'user' }
 } );
 
-module.exports = mongoose.model( 'gpt', gptSchema );
+module.exports = mongoose.model( 'GPT', GPTSchema );
