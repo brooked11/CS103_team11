@@ -10,6 +10,7 @@ const weatherRouter = require('./routes/weather');
 const annaAppRouter = require('./routes/annaApp');
 
 const User = require('./models/User');
+const gpt = require('./models/gpt');
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
@@ -63,7 +64,7 @@ function isLoggedIn(req, res, next) {
 /* **************************************** */
 /* creating the app */
 /* **************************************** */
-var app = express();
+const app = express();
 
 app.use(session({
   secret: 'This is a secret',
@@ -107,7 +108,7 @@ app.get('/about',
   }
 )
 
-app.use('/annaApp', annaAppRouter);
+app.use(annaAppRouter);
 
 app.get('/simonApp', (req,res,next) => {
   res.render('simonApp');

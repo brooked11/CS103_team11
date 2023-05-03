@@ -1,58 +1,50 @@
 const router = require("express").Router();
 
-// async function annaMethod(modelEngine, prompt) {
-//     const openai = require('openai');
+router.get('/annaApp', function(req, res, next) {
+    res.render('annaApp');
+});
 
-//     try {
-//         const completion = await openai.Completion.create({
-//             engine: modelEngine,
-//             prompt: `translate statement after comma into language inputted before comma ${prompt}`,
-//             max_tokens: 1024,
-//             n: 1,
-//             stop: null,
-//             temperature: 0.8,
-//         });
+////////////////////////////////////////////////////////////////////////
 
-//         const response = completion.choices[0].text;
-//         return response;
-//     } catch (error) {
-//         console.error(error);
-//         return null;
-//     }
-// }
+// router.post('/gpt', async (req,res,next) => {
+//     const userInput = req.body.userInput;
 
-// router.get("/annaApp", (req, res, next) => {
-//     res.render("annaApp");
-//     }
-// );
+//     const gptResponse = await openai.createCompletion({
+//         model: "text-davinci-003",
+//         prompt: "User input",
+//     });
 
-// module.exports = annaMethod;
+//     const completion = gptResponse.data.choices[0].text;
 
-// app.route('/annaform', methods=['GET', 'POST'])
-// async function annaForm():
-//     if request.method == 'POST':
-//         prompt = request.form['prompt']
-//         answer = gptAPI.annaMethod(prompt)
-//         return f'''
-//         <h1>Anna's method</h1>
-//         <pre style="bgcolor:yellow">{prompt}</pre>
-//         <hr>
-//         Here is the answer:
-//         <br>
-//         <div style="border:thin solid black; padding: 10px">{answer}</div>
-//         <br>
-//         <a href={url_for('annaForm')}>Type more!</a>
-//         <br>
-//         <a href="{url_for('index')}">Go Back to Index</a>
-//         <br>
-//         <button><b><a href='/'>Home</a></b></button>
-//         '''
-//     else:
-//         return '''
-//         <h1>Anna's method</h1>
-//         Enter a text below. The app will jumble it up!
-//         <form method="post">
-//             <textarea name="prompt"></textarea>
-//             <p><input type=submit value="get response">
-//         </form>
-//         '''
+//     return res.status(200).json({
+//         sucess: true,
+//         message: completion,
+
+//     });
+// });
+
+//////////////////////////////////////////////////////////
+
+const openai = require('openai');
+const openaiApiKey = 'YOUR_API_KEY';
+
+router.get('/gpt', function(req, res, next) {
+    const generateGptResponse = async (modelEngine, prompt) => {
+        const openaiClient = new openai.OpenAI({apiKey: openaiApiKey});
+      
+        const response = await openaiClient.completions.create({
+          engine: modelEngine,
+          prompt: `translate statement after comma into language inputted before comma ${prompt}`,
+          maxTokens: 1024,
+          n: 1,
+          stop: null,
+          temperature: 0.8,
+        });
+
+        res.send(response);
+      
+        return response.choices[0].text;
+      }
+});
+
+module.exports = router;
