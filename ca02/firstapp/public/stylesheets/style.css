@@ -27,22 +27,22 @@ a {
 }
 
 .user-message {
-  background-color: #F1F0F0;
-  color: #000;
-  border-radius: 15px;
-  padding: 10px;
-  max-width: 50%;
-  align-self: flex-start;
-  margin-bottom: 5px;
-}
-
-.gpt-message {
   background-color: rgb(13, 13, 112);
   color: #fff;
   border-radius: 15px;
   padding: 10px;
   max-width: 50%;
   align-self: flex-end;
+  margin-bottom: 5px;
+}
+
+.gpt-message {
+  background-color: #F1F0F0;
+  color: #000;
+  border-radius: 15px;
+  padding: 10px;
+  max-width: 50%;
+  align-self: flex-start;
   margin-bottom: 5px;
 }
 
