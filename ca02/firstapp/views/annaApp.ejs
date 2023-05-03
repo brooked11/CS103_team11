@@ -11,3 +11,43 @@
 <br>
 
 <%= items %>
+
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>User Input</th>
+                <th>ChatGPT's Response</th>
+                <th>Time Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% items.forEach(item=> { %>
+                <tr>
+                    <td>
+                        <i><%= user.username %></i>: <%= item.input %>
+                    </td>
+                    <td><i>GPT</i>: <%= item.output %>
+                    </td>
+                    <td colspan="2">
+                        <%= item.createdAt %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table> -->
+
+    <div class="chat-container">
+        <% items.forEach(item=> { %>
+            <div class="message-container">
+                <div class="user-message">
+                    <%= item.input %>
+                </div>
+                <div class="gpt-message">
+                    <%= item.output %>
+                </div>
+                <div style="align-self: flex-end;">
+                    <%= item.createdAt %>
+                </div>
+            </div>
+            <% }) %>
+    </div>

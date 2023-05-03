@@ -3,7 +3,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const simonAppItem = require('../models/GPT')
+const simonAppItem = require('../models/SimonGPT')
 const User = require('../models/User')
 
 // configure dotenv // install: npm install dotenv
