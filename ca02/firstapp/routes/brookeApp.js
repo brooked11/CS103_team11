@@ -43,13 +43,13 @@ router.get('/brookeApp/',
 
 
 /* add the value in the body to the list associated to the key */
-router.post('/brookeApp',
+router.post('/brookeGpt',
   isLoggedIn,
   async (req, res, next) => {
       const prompt = req.body.userInput;
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt,
+        prompt: prompt, //'Insert comments into this code: ${prompt}'
       });
       const request = new brookeAppItem(
         {input:req.body.userInput,

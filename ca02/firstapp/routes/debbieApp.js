@@ -30,18 +30,18 @@ router.get('/debbieApp',
     res.render('debbieApp', { items });
   });
 
-router.post('/debbieApp',
+router.post('/gpt',
   isLoggedIn,
   async (req, res, next) => {
-    const prompt = req.body.userInput;
+    const prompt = req.body.inputRequest; 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: prompt,
+      prompt: "rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing" + prompt,
     });
 
     const request = new debbieAppItem(
       {
-        input: req.body.userInput,
+        input: req.body.inputRequest,
         output: response.data.choices[0].text,
         createdAt: new Date(),
         userId: req.user._id
