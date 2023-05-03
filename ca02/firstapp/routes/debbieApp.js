@@ -1,53 +1,53 @@
-const router = require("express").Router();
+const express = require("express")
+const router = express.Router();
+const debbieAppItem = require('../models/GPT')
+const User = require('../models/User')
 
-router.get('/debbieApp', function(req, res, next) {
-    res.render('debbieApp');
+require("dotenv").config();
+
+const { Configuration, OpenAIApi } = require("openai");
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
+const openai = new OpenAIApi(configuration);
 
-const openai = require('openai');
-const openaiApiKey = 'YOUR_API_KEY';
+isLoggedIn = (req, res, next) => {
+  if (res.locals.loggedIn) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+}
 
-router.get('/gpt', function(req, res, next) {
-    const generateGptResponse = async (modelEngine, prompt) => {
-        const openaiClient = new openai.OpenAI({apiKey: openaiApiKey});
-      
-        const response = await openaiClient.completions.create({
-          engine: modelEngine,
-          prompt: `rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing${prompt}`,
-          maxTokens: 1024,
-          n: 1,
-          stop: null,
-          temperature: 0.8,
-        });
+router.get('/debbieApp',
+  isLoggedIn,
 
-        res.send(response);
-      
-        return response.choices[0].text;
-      }
-});
+  async function (req, res, next) {
+    const showItems = req.query.showItems;
+    items = await debbieAppItem.find({ userId: req.user._id })
+    res.render('debbieApp', { items });
+  });
 
+router.post('/debbieApp',
+  isLoggedIn,
+  async (req, res, next) => {
+    const prompt = req.body.userInput;
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: prompt,
+    });
 
-////////////////////////////////////////////////////////////////////////
-
-// router.post('/gpt', async (req,res,next) => {
-//     const userInput = req.body.userInput;
-
-//     const gptResponse = await openai.createCompletion({
-//         model: "text-davinci-003",
-//         prompt: "User input",
-//     });
-
-//     const completion = gptResponse.data.choices[0].text;
-
-//     return res.status(200).json({
-//         sucess: true,
-//         message: completion,
-
-//     });
-// });
-
-//////////////////////////////////////////////////////////
-
+    const request = new debbieAppItem(
+      {
+        input: req.body.userInput,
+        output: response.data.choices[0].text,
+        createdAt: new Date(),
+        userId: req.user._id
+      })
+    await request.save();
+    res.redirect('/debbieApp')
+  });
 
 module.exports = router;

@@ -8,6 +8,7 @@ const pw_auth_router = require('./routes/pwauth')
 const toDoRouter = require('./routes/todo');
 const weatherRouter = require('./routes/weather');
 const annaAppRouter = require('./routes/annaApp');
+const debbieAppRouter = require('./routes/debbieApp');
 const simonAppRouter = require('./routes/simonApp');
 const brookeAppRouter = require('./routes/brookeApp');
 require("dotenv").config();
@@ -114,6 +115,7 @@ app.get('/about',
 app.use(annaAppRouter);
 app.use(simonAppRouter);
 app.use(brookeAppRouter);
+app.use(debbieAppRouter);
 
 app.get('/debbieApp', (req,res,next) => {
   res.render('debbieApp');
