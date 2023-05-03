@@ -33,10 +33,11 @@ router.get('/annaApp',
 router.post('/gpt',
   isLoggedIn,
   async (req, res, next) => {
+    const language = req.body.userLanguage;
     const prompt = req.body.userInput;
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: prompt,
+      prompt: "translate prompt: " + prompt + " to " + language + ":",
     });
 
     const request = new annaAppItem(
@@ -49,5 +50,56 @@ router.post('/gpt',
     await request.save();
     res.redirect('/annaApp')
   });
+
+router.get('/annaApp/remove/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+    console.log("inside /annaApp/remove/:itemId")
+    await annaAppItem.deleteOne({ _id: req.params.itemId });
+    res.redirect('/annaApp')
+  });
+
+// router.get('/annaApp/complete/:itemId',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//     console.log("inside /annaApp/complete/:itemId")
+//     await annaAppItem.findOneAndUpdate(
+//       { _id: req.params.itemId },
+//       { $set: { completed: true } });
+//     res.redirect('/annaApp')
+//   });
+
+// router.get('/annaApp/uncomplete/:itemId',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//     console.log("inside /annaApp/complete/:itemId")
+//     await annaAppItem.findOneAndUpdate(
+//       { _id: req.params.itemId },
+//       { $set: { completed: false } });
+//     res.redirect('/annaApp')
+//   });
+
+// router.get('/annaApp/edit/:itemId',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//     console.log("inside /annaApp/edit/:itemId")
+//     const item =
+//       await annaAppItem.findById(req.params.itemId);
+//     //res.render('edit', { item });
+//     res.locals.item = item
+//     res.render('edit')
+//     //res.json(item)
+//   });
+
+// router.post('/annaApp/updateannaAppItem',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//     const { itemId, item, priority } = req.body;
+//     console.log("inside /annaApp/complete/:itemId");
+//     await annaAppItem.findOneAndUpdate(
+//       { _id: itemId },
+//       { $set: { item, priority } });
+//     res.redirect('/annaApp')
+//   });
 
 module.exports = router;

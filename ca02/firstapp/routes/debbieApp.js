@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router();
-const debbieAppItem = require('../models/GPT')
+const debbieAppItem = require('../models/DebbieGPT')
 const User = require('../models/User')
 
 require("dotenv").config();
