@@ -115,6 +115,7 @@ app.get('/simonApp', (req,res,next) => {
 })
 
 app.get('/brookeApp', (req,res,next) => {
+  isLoggedIn,
   res.render('brookeApp');
 })
 
