@@ -43,7 +43,7 @@ router.get('/brookeApp/',
 
 
 /* add the value in the body to the list associated to the key */
-router.post('/brookeApp',
+router.post('/brookeGpt',
   isLoggedIn,
   async (req, res, next) => {
       const prompt = req.body.userInput;
