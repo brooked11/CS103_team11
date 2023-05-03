@@ -3,7 +3,7 @@
 */
 const express = require('express');
 const router = express.Router();
-const ToDoItem = require('../models/GPT')
+const simonAppItem = require('../models/GPT')
 const User = require('../models/User')
 
 // configure dotenv // install: npm install dotenv
@@ -37,7 +37,7 @@ router.get('/simonApp/',
   async (req, res, next) => {
       const show = req.query.show
     items = 
-        await ToDoItem.find({userId:req.user._id})
+        await simonAppItem.find({userId:req.user._id})
             res.render('simonApp',{items});
 });
 
@@ -51,7 +51,7 @@ router.post('/simonApp',
         model: "text-davinci-003",
         prompt,
       });
-      const request = new ToDoItem(
+      const request = new simonAppItem(
         {input:req.body.userInput,
          output: response.data.choices[0].text,
          createdAt: new Date(),
@@ -73,7 +73,7 @@ router.get('/simonApp/complete/:itemId',
   isLoggedIn,
   async (req, res, next) => {
       console.log("inside /simonApp/complete/:itemId")
-      await ToDoItem.findOneAndUpdate(
+      await simonAppItem.findOneAndUpdate(
         {_id:req.params.itemId},
         {$set: {completed:true}} );
       res.redirect('/simonApp')
@@ -83,7 +83,7 @@ router.get('/simonApp/uncomplete/:itemId',
   isLoggedIn,
   async (req, res, next) => {
       console.log("inside /simonApp/complete/:itemId")
-      await ToDoItem.findOneAndUpdate(
+      await simonAppItem.findOneAndUpdate(
         {_id:req.params.itemId},
         {$set: {completed:false}} );
       res.redirect('/simonApp')
@@ -94,46 +94,22 @@ router.get('/simonApp/edit/:itemId',
   async (req, res, next) => {
       console.log("inside /simonApp/edit/:itemId")
       const item = 
-       await ToDoItem.findById(req.params.itemId);
+       await simonAppItem.findById(req.params.itemId);
       //res.render('edit', { item });
       res.locals.item = item
       res.render('edit')
       //res.json(item)
 });
 
-router.post('/simonApp/updateTodoItem',
+router.post('/simonApp/updatesimonAppItem',
   isLoggedIn,
   async (req, res, next) => {
       const {itemId,item,priority} = req.body;
       console.log("inside /simonApp/complete/:itemId");
-      await ToDoItem.findOneAndUpdate(
+      await simonAppItem.findOneAndUpdate(
         {_id:itemId},
         {$set: {item,priority}} );
       res.redirect('/simonApp')
 });
-
-router.get('/simonApp/byUser',
-  isLoggedIn,
-  async (req, res, next) => {
-      let results =
-            await ToDoItem.aggregate(
-                [ 
-                  {$group:{
-                    _id:'$userId',
-                    total:{$count:{}}
-                    }},
-                  {$sort:{total:-1}},              
-                ])
-        // if you comment out lines 125-128 you can see the raw data      
-        results = 
-           await User.populate(results,
-                   {path:'_id',
-                   select:['username','age']})
-
-        //res.json(results)
-        res.render('summarizeByUser',{results})
-});
-
-
 
 module.exports = router;
