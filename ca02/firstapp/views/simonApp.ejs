@@ -9,3 +9,13 @@
     <%=items %>
     
   </div>
+
+  <div>
+    <ul class="list-group">
+        <% items.forEach(item => { %>
+            <li class="list-group-item"><%= item.input %></li>
+            <li class="list-group-item"><%= item.output %></li>
+            <li class="list-group-item"><%= item.createdAt %></li>
+        <% }) %>
+    </ul>
+  </div>

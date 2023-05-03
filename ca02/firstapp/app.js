@@ -9,6 +9,7 @@ const toDoRouter = require('./routes/todo');
 const weatherRouter = require('./routes/weather');
 const annaAppRouter = require('./routes/annaApp');
 const simonAppRouter = require('./routes/simonApp');
+const brookeAppRouter = require('./routes/brookeApp');
 
 const User = require('./models/User');
 const gpt = require('./models/GPT');
@@ -111,6 +112,7 @@ app.get('/about',
 
 app.use(annaAppRouter);
 app.use(simonAppRouter);
+app.use(brookeAppRouter);
 
 
 app.get('/brookeApp', (req,res,next) => {
