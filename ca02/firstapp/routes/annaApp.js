@@ -36,7 +36,7 @@ router.post('/gpt',
     const prompt = req.body.userInput;
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt,
+      prompt: prompt,
     });
 
     const request = new annaAppItem(
