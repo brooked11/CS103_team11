@@ -43,7 +43,7 @@ router.post('/debbiegpt',
 
     const request = new debbieAppItem(
       {
-        input: req.body.inputRequest,
+        input: req.body.userInput,
         output: response.data.choices[0].text,
         createdAt: new Date(),
         userId: req.user._id
