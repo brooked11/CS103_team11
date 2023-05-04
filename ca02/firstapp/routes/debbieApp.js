@@ -36,7 +36,7 @@ router.post('/gpt',
     const prompt = req.body.inputRequest; 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: "rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing" + prompt,
+      prompt: "rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing" ,
     });
 
     const request = new debbieAppItem(
