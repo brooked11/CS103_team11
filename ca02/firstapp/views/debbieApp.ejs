@@ -1,13 +1,44 @@
 <!-- debbie-form.ejs -->
 <h1>Debbie's method
 </h1>
-<form action="/debbieApp" method="POST">
+<form action="/debbiegpt" method="POST">
+    <div style="font-family: 'Pacifico', cursive; font-size: 24px; color: #0099ff; margin-bottom: 20px;">
+        🚀 Enter your your program below. This app will rewrite it in Java!! Enjoy :)
+    </div>
+    <label for="inputRequest" style="font-family: 'Quicksand', sans-serif; font-size: 18px; color: #333;">
+        
+    </label>
+    <div style="display: flex; flex-direction: column;">
+        <input type="textarea" name="userInput" id="inputRequest" placeholder="Enter your code here" required style="font-family: 'Quicksand', sans-serif; font-size: 16px; padding: 10px; border-radius: 5px; border: 2px solid #0099ff; margin-bottom: 22px;">
 
-    <label for="inputRequest">Request</label>
-    <input type="text" name="inputRequest" id="inputRequest" placeholder="Enter request here" required>
     
-    <button type="submit" value="submit">Submit</button>
+        <button type="submit" value="submit" style="font-family: 'Pacifico', cursive; font-size: 18px; color: #fff; background-color: #0099ff; border-radius: 5px; padding: 10px 20px; border: none; cursor: pointer; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);">
+            🚀 Submit
+        </button>
+    </div>
+    
 
-</form>       
+</form>
 
-<h1> check if this works</h1>
+
+
+
+
+<div class="chat-container">
+    <% items.forEach(item => { %>
+        <div class="message-container">
+            <div class="user-message">
+                <%= item.input %>
+            </div>
+            <div class="gpt-message">
+                <%= item.output %>
+            </div>
+            <div class="timestamp">
+                <%= item.createdAt %>
+            </div>
+        </div>
+    <% }); %>
+    <div class="chat-summary">
+        Showing <%= items.length %> messages
+    </div>
+</div>

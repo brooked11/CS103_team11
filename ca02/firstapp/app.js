@@ -108,15 +108,20 @@ app.get('/about',
     res.render('about');
   }
 )
+app.get('/team', 
+  isLoggedIn,
+  (req,res,next) => {
+    res.render('team');
+  }
+)
+
+
 
 app.use(annaAppRouter);
 app.use(simonAppRouter);
 app.use(brookeAppRouter);
 app.use(debbieAppRouter);
 
-app.get('/debbieApp', (req,res,next) => {
-  res.render('debbieApp');
-})
 
 app.use(toDoRouter);
 app.use(weatherRouter);
