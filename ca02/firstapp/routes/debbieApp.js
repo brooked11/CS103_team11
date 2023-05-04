@@ -59,5 +59,7 @@ router.get('/debbieApp/remove/:itemId',
     res.redirect('/debbieApp')
   });
 
+  module.exports = router;
+
 
 
