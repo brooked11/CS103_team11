@@ -42,7 +42,7 @@ router.post('/debbiegpt',
 
     const request = new debbieAppItem(
       {
-        input: req.body.userInput,
+        input: req.body.inputRequest,
         output: response.data.choices[0].text,
         createdAt: new Date(),
         userId: req.user._id
@@ -62,4 +62,4 @@ router.get('/debbieApp/remove/:itemId',
   module.exports = router;
 
 
-
+  module.exports = router;

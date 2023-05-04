@@ -122,9 +122,6 @@ app.use(simonAppRouter);
 app.use(brookeAppRouter);
 app.use(debbieAppRouter);
 
-app.get('/debbieApp', (req,res,next) => {
-  res.render('debbieApp');
-})
 
 app.use(toDoRouter);
 app.use(weatherRouter);
