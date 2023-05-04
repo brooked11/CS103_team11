@@ -49,7 +49,7 @@ router.post('/simonApp',
       const prompt = req.body.userInput;
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: "Positive cognitive reframe following prompt:\n" + prompt,
+        prompt: "Positive cognitive reframe following prompt (and end with a random cute positive emoji):\n" + prompt,
         max_tokens: 120,
       });
       const request = new simonAppItem(
