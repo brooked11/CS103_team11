@@ -38,6 +38,7 @@ router.post('/gpt',
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: "translate prompt: " + prompt + " to " + language + ":",
+      max_tokens: 120,
     });
 
     const request = new annaAppItem(

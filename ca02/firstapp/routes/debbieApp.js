@@ -38,6 +38,7 @@ router.post('/debbiegpt',
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: "rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing" + prompt,
+      max_tokens: 120,
     });
 
     const request = new debbieAppItem(
