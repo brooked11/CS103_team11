@@ -30,18 +30,19 @@ router.get('/debbieApp',
     res.render('debbieApp', { items });
   });
 
-router.post('/gpt',
+router.post('/debbiegpt',
   isLoggedIn,
   async (req, res, next) => {
-    const prompt = req.body.inputRequest; 
+    
+    const prompt = req.body.userInput;
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: "rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing" ,
+      prompt: "rewrite the inputted program in the java programming language, make sure to include the proper indentations and spacing" + prompt,
     });
 
     const request = new debbieAppItem(
       {
-        input: req.body.inputRequest,
+        input: req.body.userInput,
         output: response.data.choices[0].text,
         createdAt: new Date(),
         userId: req.user._id
@@ -50,4 +51,13 @@ router.post('/gpt',
     res.redirect('/debbieApp')
   });
 
-module.exports = router;
+router.get('/debbieApp/remove/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+    console.log("inside /debbieApp/remove/:itemId")
+    await debbieAppItem.deleteOne({ _id: req.params.itemId });
+    res.redirect('/debbieApp')
+  });
+
+
+
