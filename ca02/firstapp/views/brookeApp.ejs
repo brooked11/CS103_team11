@@ -1,13 +1,55 @@
-<body style="background-color:white;">
-    <h1> Brooke's Method </h1>
-    <h5> Please input code so that the computer will comment on it: </h5>
+<h1 class="center"> Brooke's Method </h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.dir {
+  background-color: tomato;
+  color: white;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="dir">
+    <h3>Directions:</h3>
+    <h4>Input any piece of code you want, and this method will insert comments into it!</h4>
+</div>
+
+<br>
+
+<div>
     <form action="/brookeApp/test" method="POST">
-    
+
         <label for="inputRequest">Request:</label>
         <input type="text" name="inputRequest" id="inputRequest" placeholder="Enter your request here" required>
     
         <button type="submit" value="submit"> Submit </button>
     
     </form>
-    
-    <%= items %>
+</div>
+
+<br>
+
+    <div class="chat-container">
+        <% items.forEach(item=> { %>
+            <div class="message-container">
+                <div class="user-message">
+                    <%= item.input %>
+                </div>
+                <a href="/brookeApp/remove/<%=item._id %>" style="align-self: flex-end">
+                    <i class="bi bi-trash"></i>
+                </a>
+                <div class="gpt-message">
+                    <%= item.output %>
+                </div>
+                <div style="align-self: flex-end; font-size: 9px;">
+                    <%= item.createdAt %>
+                </div>
+            </div>
+            <% }) %>
+    </div>
