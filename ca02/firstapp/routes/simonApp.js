@@ -37,7 +37,7 @@ router.get('/simonApp/',
   async (req, res, next) => {
       const show = req.query.show
     items = 
-        await simonAppItem.find({userId:req.user._id})
+        await simonAppItem.find({userId:req.user._id}).sort({createdAt:-1})
             res.render('simonApp',{items});
 });
 
@@ -49,7 +49,8 @@ router.post('/simonApp',
       const prompt = req.body.userInput;
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt,
+        prompt: "Positive cognitive reframe following prompt (and end with a random cute positive emoji):\n" + prompt,
+        max_tokens: 120,
       });
       const request = new simonAppItem(
         {input:req.body.userInput,
@@ -66,49 +67,6 @@ router.get('/simonApp/remove/:itemId',
   async (req, res, next) => {
       console.log("inside /simonApp/remove/:itemId")
       await simonAppItem.deleteOne({_id:req.params.itemId});
-      res.redirect('/simonApp')
-});
-
-router.get('/simonApp/complete/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      console.log("inside /simonApp/complete/:itemId")
-      await simonAppItem.findOneAndUpdate(
-        {_id:req.params.itemId},
-        {$set: {completed:true}} );
-      res.redirect('/simonApp')
-});
-
-router.get('/simonApp/uncomplete/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      console.log("inside /simonApp/complete/:itemId")
-      await simonAppItem.findOneAndUpdate(
-        {_id:req.params.itemId},
-        {$set: {completed:false}} );
-      res.redirect('/simonApp')
-});
-
-router.get('/simonApp/edit/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      console.log("inside /simonApp/edit/:itemId")
-      const item = 
-       await simonAppItem.findById(req.params.itemId);
-      //res.render('edit', { item });
-      res.locals.item = item
-      res.render('edit')
-      //res.json(item)
-});
-
-router.post('/simonApp/updatesimonAppItem',
-  isLoggedIn,
-  async (req, res, next) => {
-      const {itemId,item,priority} = req.body;
-      console.log("inside /simonApp/complete/:itemId");
-      await simonAppItem.findOneAndUpdate(
-        {_id:itemId},
-        {$set: {item,priority}} );
       res.redirect('/simonApp')
 });
 
