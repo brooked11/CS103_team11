@@ -34,12 +34,12 @@ isLoggedIn = (req,res,next) => {
 // get the value associated to the key
 router.get('/brookeApp/',
   isLoggedIn,
-  async (req, res, next) => {
-      const show = req.query.show
-    items = 
-        await brookeAppItem.find({userId:req.user._id})
-            res.render('brookeApp',{items});
-});
+
+  async function (req, res, next) {
+    const showItems = req.query.showItems;
+    items = await brookeAppItem.find({ userId: req.user._id })
+    res.render('brookeApp', { items });
+  });
 
 
 /* add the value in the body to the list associated to the key */
@@ -70,47 +70,47 @@ router.get('/brookeApp/remove/:itemId',
       res.redirect('/brookeApp')
 });
 
-router.get('/brookeApp/complete/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      console.log("inside /brookeApp/complete/:itemId")
-      await brookeAppItem.findOneAndUpdate(
-        {_id:req.params.itemId},
-        {$set: {completed:true}} );
-      res.redirect('/brookeApp')
-});
+// router.get('/brookeApp/complete/:itemId',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//       console.log("inside /brookeApp/complete/:itemId")
+//       await brookeAppItem.findOneAndUpdate(
+//         {_id:req.params.itemId},
+//         {$set: {completed:true}} );
+//       res.redirect('/brookeApp')
+// });
 
-router.get('/brookeApp/uncomplete/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      console.log("inside /brookeApp/complete/:itemId")
-      await brookeAppItem.findOneAndUpdate(
-        {_id:req.params.itemId},
-        {$set: {completed:false}} );
-      res.redirect('/brookeApp')
-});
+// router.get('/brookeApp/uncomplete/:itemId',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//       console.log("inside /brookeApp/complete/:itemId")
+//       await brookeAppItem.findOneAndUpdate(
+//         {_id:req.params.itemId},
+//         {$set: {completed:false}} );
+//       res.redirect('/brookeApp')
+// });
 
-router.get('/brookeApp/edit/:itemId',
-  isLoggedIn,
-  async (req, res, next) => {
-      console.log("inside /brookeApp/edit/:itemId")
-      const item = 
-       await brookeAppItem.findById(req.params.itemId);
-      //res.render('edit', { item });
-      res.locals.item = item
-      res.render('edit')
-      //res.json(item)
-});
+// router.get('/brookeApp/edit/:itemId',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//       console.log("inside /brookeApp/edit/:itemId")
+//       const item = 
+//        await brookeAppItem.findById(req.params.itemId);
+//       //res.render('edit', { item });
+//       res.locals.item = item
+//       res.render('edit')
+//       //res.json(item)
+// });
 
-router.post('/brookeApp/updatebrookeAppItem',
-  isLoggedIn,
-  async (req, res, next) => {
-      const {itemId,item,priority} = req.body;
-      console.log("inside /brookeApp/complete/:itemId");
-      await brookeAppItem.findOneAndUpdate(
-        {_id:itemId},
-        {$set: {item,priority}} );
-      res.redirect('/brookeApp')
-});
+// router.post('/brookeApp/updatebrookeAppItem',
+//   isLoggedIn,
+//   async (req, res, next) => {
+//       const {itemId,item,priority} = req.body;
+//       console.log("inside /brookeApp/complete/:itemId");
+//       await brookeAppItem.findOneAndUpdate(
+//         {_id:itemId},
+//         {$set: {item,priority}} );
+//       res.redirect('/brookeApp')
+// });
 
 module.exports = router;
